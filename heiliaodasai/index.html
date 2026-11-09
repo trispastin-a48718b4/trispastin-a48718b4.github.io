@@ -1,0 +1,1430 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黑料大赛每日大赛入口 - 赛事内容与每日赛程聚合</title>
+  <meta name="description" content="黑料大赛每日大赛入口聚合每日赛程、参赛作品、爆料分类与赛果动态，提供精选条目、深度解析和FAQ，适合关注网络爆料竞技的读者浏览。">
+  <meta name="keywords" content="网络爆料竞技,每日赛程,参赛作品,爆料分类,赛果动态">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23111827'/%3E%3Cpath d='M25 70 L50 25 L75 70 Z' fill='%23f59e0b'/%3E%3Ccircle cx='50' cy='58' r='8' fill='%23111827'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #181c24;
+      --panel-2: #1f2531;
+      --border: #2a3140;
+      --text: #e8eaed;
+      --text-2: #a8b0bd;
+      --text-3: #6b7484;
+      --accent: #f59e0b;
+      --accent-2: #fbbf24;
+      --accent-dim: rgba(245, 158, 11, 0.12);
+      --danger: #ef4444;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 4px 16px rgba(0,0,0,0.4);
+      --max: 1380px;
+      --header-h: 56px;
+      --notice-h: 38px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-padding-top: calc(var(--notice-h) + var(--header-h) + 16px); }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ===== 吸顶公告条 ===== */
+    .notice-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--notice-h);
+      background: linear-gradient(90deg, #b45309, #d97706);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0 16px;
+      letter-spacing: 0.3px;
+    }
+    .notice-bar strong { color: #fff; margin-right: 6px; }
+
+    /* ===== 吸顶页头 ===== */
+    .site-header {
+      position: sticky;
+      top: var(--notice-h);
+      z-index: 99;
+      height: var(--header-h);
+      background: rgba(15, 17, 23, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
+    }
+    .brand svg { width: 30px; height: 30px; }
+    .brand-text {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .main-nav {
+      display: flex;
+      gap: 4px;
+      flex: 1;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .main-nav::-webkit-scrollbar { display: none; }
+    .main-nav a {
+      color: var(--text-2);
+      font-size: 13.5px;
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: color .15s, background .15s;
+    }
+    .main-nav a:hover { color: var(--text); background: var(--panel-2); text-decoration: none; }
+    .header-quick {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .header-quick a {
+      font-size: 12.5px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .header-quick a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .header-quick a.primary { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 600; }
+
+    /* ===== 首屏 ===== */
+    .hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 44px 20px 36px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-dim);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .hero-badge::before { content: "●"; font-size: 8px; }
+    .hero h1 {
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 40%, var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      color: var(--text-2);
+      font-size: 14.5px;
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 26px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .15s;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: #111; }
+    .btn-primary:hover { background: var(--accent-2); text-decoration: none; }
+    .btn-ghost { border-color: var(--border); color: var(--text-2); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* 首屏视觉构图 */
+    .hero-visual {
+      position: relative;
+      height: 280px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--panel-2), #141821);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 25% 30%, rgba(245,158,11,0.18), transparent 45%),
+        radial-gradient(circle at 80% 75%, rgba(239,68,68,0.12), transparent 40%);
+    }
+    .hv-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .hv-card {
+      position: absolute;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    .hv-card .hv-tag {
+      display: inline-block;
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--accent-dim);
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+    .hv-card strong { display: block; color: var(--text); font-size: 12px; margin-bottom: 2px; }
+    .hv-card span { color: var(--text-3); font-size: 10px; }
+    .hv1 { top: 28px; left: 24px; width: 150px; transform: rotate(-2deg); }
+    .hv2 { top: 70px; right: 22px; width: 160px; transform: rotate(1.5deg); }
+    .hv3 { bottom: 28px; left: 60px; width: 170px; transform: rotate(-1deg); }
+    .hv4 { bottom: 45px; right: 34px; width: 120px; transform: rotate(2deg); }
+    .hv-line {
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.35), transparent);
+    }
+
+    /* ===== 主布局：三栏门户 ===== */
+    .layout {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      display: grid;
+      grid-template-columns: 178px minmax(0, 1fr) 248px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* 左频道索引 */
+    .channel-index {
+      position: sticky;
+      top: calc(var(--notice-h) + var(--header-h) + 20px);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+    }
+    .channel-index h2 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0 8px 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .channel-index ul { display: flex; flex-direction: column; gap: 2px; }
+    .channel-index a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      font-size: 13px;
+      transition: all .12s;
+    }
+    .channel-index a:hover { background: var(--panel-2); color: var(--accent-2); text-decoration: none; }
+    .channel-index a .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.6; flex-shrink: 0; }
+
+    /* 中间主内容 */
+    .main-col { min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+
+    section.block { scroll-margin-top: calc(var(--notice-h) + var(--header-h) + 20px); }
+    .block-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .block-head h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+    .block-head .en {
+      font-size: 11px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+    .block-head .more {
+      margin-left: auto;
+      font-size: 12.5px;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    .block-head .more:hover { color: var(--accent); text-decoration: none; }
+
+    /* 概览文字 */
+    .overview-text {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      color: var(--text-2);
+      font-size: 14.5px;
+      line-height: 1.9;
+    }
+    .overview-text p + p { margin-top: 12px; }
+    .overview-text strong { color: var(--accent-2); font-weight: 600; }
+
+    /* 精选卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .content-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .15s, transform .15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .content-card:hover { border-color: rgba(245,158,11,0.45); transform: translateY(-2px); }
+    .card-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--panel-2);
+    }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.92; transition: transform .3s; }
+    .content-card:hover .card-thumb img { transform: scale(1.04); }
+    .card-thumb .heat {
+      position: absolute;
+      top: 8px; right: 8px;
+      background: rgba(15,17,23,0.82);
+      backdrop-filter: blur(4px);
+      color: var(--accent-2);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+    .card-body { padding: 13px 15px 15px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .card-body h3 { font-size: 14.5px; font-weight: 700; color: var(--text); line-height: 1.4; }
+    .card-type {
+      display: inline-flex;
+      align-self: flex-start;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--accent-dim);
+      color: var(--accent-2);
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .card-tags span {
+      font-size: 10.5px;
+      color: var(--text-3);
+      background: var(--panel-2);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .card-desc { font-size: 12.5px; color: var(--text-2); line-height: 1.65; flex: 1; }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-3);
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .card-meta .score { color: var(--accent-2); font-weight: 700; }
+
+    /* 最新动态列表 */
+    .update-list { display: flex; flex-direction: column; gap: 2px; }
+    .update-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--panel);
+      border: 1px solid transparent;
+      transition: border-color .12s, background .12s;
+      align-items: baseline;
+    }
+    .update-item:hover { border-color: var(--border); background: var(--panel-2); }
+    .update-time {
+      font-size: 11.5px;
+      color: var(--accent-2);
+      font-weight: 600;
+      white-space: nowrap;
+      min-width: 52px;
+      font-variant-numeric: tabular-nums;
+    }
+    .update-main { flex: 1; min-width: 0; }
+    .update-main strong { font-size: 13.5px; color: var(--text); font-weight: 600; }
+    .update-main p { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
+
+    /* 分类入口 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 14px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all .15s;
+    }
+    .category-item:hover { border-color: var(--accent); background: var(--panel-2); text-decoration: none; }
+    .category-item strong { font-size: 13.5px; color: var(--text); }
+    .category-item span { font-size: 11px; color: var(--text-3); }
+    .category-item .cat-count { color: var(--accent-2); font-weight: 600; font-size: 11px; }
+
+    /* 深度解析 */
+    .deep-read {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+    }
+    .deep-read h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin: 22px 0 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .deep-read h3:first-of-type { margin-top: 0; }
+    .deep-read p { color: var(--text-2); font-size: 14px; line-height: 1.85; margin-bottom: 10px; }
+    .deep-read ul { margin: 8px 0 12px 4px; display: flex; flex-direction: column; gap: 6px; }
+    .deep-read li {
+      color: var(--text-2);
+      font-size: 13.5px;
+      line-height: 1.7;
+      padding-left: 18px;
+      position: relative;
+    }
+    .deep-read li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+    .deep-read strong { color: var(--text); }
+
+    /* 体验指南：编号步骤 */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step {
+      display: flex;
+      gap: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgba(245,158,11,0.35);
+      color: var(--accent-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .step-content h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .step-content p { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    details.faq {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    details.faq summary {
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 400;
+      transition: transform .15s;
+      flex-shrink: 0;
+    }
+    details.faq[open] summary::after { content: "−"; }
+    details.faq .faq-a {
+      padding: 0 16px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+      padding-top: 12px;
+    }
+
+    /* 用户评论 */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .comment {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .comment-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+    .comment-head strong { font-size: 12.5px; color: var(--accent-2); font-weight: 600; }
+    .comment-head time { font-size: 10.5px; color: var(--text-3); }
+    .comment p { font-size: 12.5px; color: var(--text-2); line-height: 1.65; }
+
+    /* 相关资讯 */
+    .news-list { display: flex; flex-direction: column; gap: 10px; }
+    .news-item {
+      display: flex;
+      gap: 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      align-items: center;
+    }
+    .news-item .news-date {
+      font-size: 11px;
+      color: var(--text-3);
+      white-space: nowrap;
+      min-width: 58px;
+      font-variant-numeric: tabular-nums;
+    }
+    .news-item .news-body h3 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .news-item .news-body p { font-size: 12px; color: var(--text-3); line-height: 1.55; }
+
+    /* 相关推荐标签索引 */
+    .tag-index { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-index a {
+      font-size: 12.5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      transition: all .15s;
+    }
+    .tag-index a:hover { border-color: var(--accent); color: var(--accent-2); text-decoration: none; background: var(--panel-2); }
+
+    /* 补充：热门榜单 */
+    .rank-list { display: flex; flex-direction: column; gap: 6px; }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .rank-no {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: var(--panel-2);
+      color: var(--text-3);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .rank-item:nth-child(1) .rank-no { background: var(--accent); color: #111; }
+    .rank-item:nth-child(2) .rank-no { background: #94a3b8; color: #111; }
+    .rank-item:nth-child(3) .rank-no { background: #b45309; color: #fff; }
+    .rank-info { flex: 1; min-width: 0; }
+    .rank-info strong { font-size: 13.5px; color: var(--text); display: block; }
+    .rank-info span { font-size: 11px; color: var(--text-3); }
+    .rank-heat { font-size: 12px; color: var(--accent-2); font-weight: 700; white-space: nowrap; }
+
+    /* 右侧辅助栏 */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .side-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 16px 14px;
+    }
+    .side-card h2 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .side-card h2::before {
+      content: "";
+      width: 3px; height: 13px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .side-list { display: flex; flex-direction: column; gap: 2px; }
+    .side-list a {
+      display: flex;
+      gap: 9px;
+      padding: 7px 6px;
+      border-radius: 5px;
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.5;
+      transition: background .12s, color .12s;
+    }
+    .side-list a:hover { background: var(--panel-2); color: var(--accent-2); text-decoration: none; }
+    .side-list .idx { color: var(--text-3); font-weight: 700; font-size: 11px; min-width: 16px; font-variant-numeric: tabular-nums; }
+    .side-list a:nth-child(-n+3) .idx { color: var(--accent); }
+    .side-list .side-tag { margin-left: auto; font-size: 10px; color: var(--text-3); white-space: nowrap; }
+
+    /* 页尾 */
+    .site-footer {
+      background: #0a0c11;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 40px 20px 26px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+    .footer-brand .brand { margin-bottom: 2px; }
+    .footer-brand p { font-size: 12.5px; color: var(--text-3); line-height: 1.7; max-width: 300px; }
+    .footer-col h3 { font-size: 12.5px; font-weight: 700; color: var(--text-2); margin-bottom: 10px; letter-spacing: 0.5px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 6px; }
+    .footer-col a { font-size: 12px; color: var(--text-3); }
+    .footer-col a:hover { color: var(--accent-2); text-decoration: none; }
+    .footer-bottom {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 11.5px;
+      color: var(--text-3);
+    }
+    .footer-bottom .sample-note { color: var(--text-3); opacity: 0.75; }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 1fr 240px; }
+      .channel-index { display: none; }
+      .hero { grid-template-columns: 1fr 320px; gap: 32px; }
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { order: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .hero-visual { height: 220px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 740px) {
+      body { font-size: 14px; }
+      .header-inner { gap: 14px; padding: 0 14px; }
+      .main-nav { gap: 0; }
+      .main-nav a { padding: 6px 8px; font-size: 12.5px; }
+      .header-quick { display: none; }
+      .hero { padding: 28px 14px 24px; }
+      .hero-visual { height: 180px; }
+      .layout { padding: 0 14px 40px; gap: 24px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .comment-grid { grid-template-columns: 1fr; }
+      .sidebar { grid-template-columns: 1fr; }
+      .deep-read { padding: 20px 16px; }
+      .footer-top { grid-template-columns: 1fr; gap: 22px; }
+      .footer-inner { padding: 28px 14px 20px; }
+      .hv-card { display: none; }
+      .hv4 { display: none; }
+      .hv1, .hv2, .hv3 { display: none; }
+      .hero-visual::after {
+        content: "每日爆料竞技 · 赛程聚合";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-3);
+        font-size: 13px;
+        letter-spacing: 2px;
+      }
+    }
+    @media (max-width: 400px) {
+      .hero h1 { font-size: 24px; }
+      .update-item { flex-direction: column; gap: 4px; }
+      .news-item { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+  <!-- 吸顶公告条 -->
+  <div class="notice-bar" role="status">
+    <strong>赛程更新</strong> 11 月 8 日新增 9 条参赛作品 · 本周累计 47 条爆料条目 · 今晚 21:00 截止投票
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <rect width="100" height="100" rx="20" fill="#1f2531"/>
+          <path d="M25 70 L50 25 L75 70 Z" fill="#f59e0b"/>
+          <circle cx="50" cy="58" r="7" fill="#1f2531"/>
+        </svg>
+        <span class="brand-text">黑料大赛每日大赛入口</span>
+      </div>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview">赛事概览</a>
+        <a href="/#picks">精选作品</a>
+        <a href="/#updates">今日动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deepread">深度解析</a>
+        <a href="/#guide">参赛指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">社区评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#ranking">热门榜单</a>
+      </nav>
+      <div class="header-quick">
+        <a href="/#updates">今日赛程</a>
+        <a href="/#picks" class="primary">进入大赛</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div>
+      <span class="hero-badge">2026 年 11 月 8 日 · 每日赛程已更新</span>
+      <h1>黑料大赛每日大赛入口</h1>
+      <p class="hero-desc">这里汇集网络爆料竞技领域的每日赛程、参赛作品与分类条目。从“反转实锤”到“线索推理”，从“图文爆料”到“视频举证”，你可以按类型浏览当天新提交的参赛内容，查看赛果动态与社区讨论焦点。</p>
+      <div class="hero-actions">
+        <a href="/#picks" class="btn btn-primary">浏览精选参赛作品</a>
+        <a href="/#updates" class="btn btn-ghost">查看今日赛程</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-grid"></div>
+      <div class="hv-line"></div>
+      <div class="hv-card hv1">
+        <span class="hv-tag">反转实锤</span>
+        <strong>电梯监控时间线复盘</strong>
+        <span>热度 9.4 · 32 条讨论</span>
+      </div>
+      <div class="hv-card hv2">
+        <span class="hv-tag">线索推理</span>
+        <strong>外卖单据定位疑点</strong>
+        <span>热度 9.1 · 28 条讨论</span>
+      </div>
+      <div class="hv-card hv3">
+        <span class="hv-tag">图文爆料</span>
+        <strong>合租水电费明细曝光</strong>
+        <span>热度 8.7 · 19 条讨论</span>
+      </div>
+      <div class="hv-card hv4">
+        <span class="hv-tag">视频举证</span>
+        <strong>停车位纠纷全程</strong>
+        <span>热度 8.2 · 14 条讨论</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主布局：三栏门户 -->
+  <div class="layout">
+
+    <!-- 左频道索引 -->
+    <aside class="channel-index" aria-label="频道索引">
+      <h2>频道索引</h2>
+      <ul>
+        <li><a href="/#picks"><span class="dot"></span>反转实锤</a></li>
+        <li><a href="/#picks"><span class="dot"></span>线索推理</a></li>
+        <li><a href="/#picks"><span class="dot"></span>图文爆料</a></li>
+        <li><a href="/#picks"><span class="dot"></span>视频举证</a></li>
+        <li><a href="/#categories"><span class="dot"></span>职场爆料</a></li>
+        <li><a href="/#categories"><span class="dot"></span>邻里纠纷</a></li>
+        <li><a href="/#categories"><span class="dot"></span>消费维权</a></li>
+        <li><a href="/#categories"><span class="dot"></span>校园事件</a></li>
+        <li><a href="/#categories"><span class="dot"></span>情感纠葛</a></li>
+        <li><a href="/#categories"><span class="dot"></span>网络热点</a></li>
+        <li><a href="/#ranking"><span class="dot"></span>今日热榜</a></li>
+        <li><a href="/#faq"><span class="dot"></span>参赛规则</a></li>
+      </ul>
+    </aside>
+
+    <!-- 中间主内容 -->
+    <main class="main-col">
+
+      <!-- 1. 主题领域概览 -->
+      <section class="block" id="overview">
+        <div class="block-head">
+          <h2>赛事领域概览</h2>
+          <span class="en">Overview</span>
+        </div>
+        <div class="overview-text">
+          <p><strong>黑料大赛</strong>是一种以网络爆料为素材的竞技内容形式，参赛者将日常生活中的纠纷、消费陷阱、职场事件等整理成可验证的爆料条目，按“反转实锤”“线索推理”“图文爆料”“视频举证”等类型提交，由社区读者投票与评审团打分共同决定每日排名。当前每日大赛入口汇聚了六大类爆料方向：<strong>职场爆料</strong>聚焦加班考勤、绩效争议、离职纠纷；<strong>邻里纠纷</strong>覆盖噪音扰民、车位占用、物业矛盾；<strong>消费维权</strong>涉及虚假宣传、退款扯皮、服务缩水；<strong>校园事件</strong>关注宿舍关系、社团经费、评优争议；<strong>情感纠葛</strong>围绕恋爱转账、聊天记录、分手纠纷；<strong>网络热点</strong>则收纳社交媒体上的公共话题爆料。</p>
+          <p>每日大赛的参赛条目通常包含时间线、证据截图、当事人陈述和第三方佐证四要素。评审从<strong>证据完整度、逻辑自洽性、叙事清晰度</strong>三个维度打分，读者投票则反映话题的公共关注度。11 月 8 日的赛程中，反转实锤类作品“电梯监控时间线复盘”与线索推理类作品“外卖单据定位疑点”暂列前两位，职场爆料类新增条目最多，共 11 条。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section class="block" id="picks">
+        <div class="block-head">
+          <h2>精选参赛作品</h2>
+          <span class="en">Featured</span>
+          <a href="/#updates" class="more">更多今日条目 →</a>
+        </div>
+        <div class="card-grid">
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/dianti-jiankong47/400/300" alt="电梯监控时间线复盘参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 9.4</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">反转实锤</span>
+              <h3>电梯监控时间线复盘</h3>
+              <div class="card-tags"><span>监控逐帧</span><span>时间轴</span><span>邻里纠纷</span></div>
+              <p class="card-desc">参赛者用 3 段电梯监控逐帧比对，还原 11 月 5 日夜间宠物伤人事件的先后顺序，附物业值班记录与楼道声控灯时间戳，证据链较完整。</p>
+              <div class="card-meta"><span>提交于 11-07</span><span class="score">评审 92 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/waimai-danju28/400/300" alt="外卖单据定位疑点参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 9.1</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">线索推理</span>
+              <h3>外卖单据定位疑点</h3>
+              <div class="card-tags"><span>消费维权</span><span>单据比对</span><span>配送轨迹</span></div>
+              <p class="card-desc">通过 6 张外卖小票的打印时间与骑手定位轨迹交叉比对，指出某商家出餐时间与配送记录存在 18 分钟矛盾，推理过程用表格逐项列出。</p>
+              <div class="card-meta"><span>提交于 11-06</span><span class="score">评审 89 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/shuidian-mingxi15/400/300" alt="合租水电费明细曝光参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 8.7</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">图文爆料</span>
+              <h3>合租水电费明细曝光</h3>
+              <div class="card-tags"><span>租房纠纷</span><span>账单拆解</span><span>聊天记录</span></div>
+              <p class="card-desc">参赛者整理 4 个月合租水电账单，用颜色标注公摊与私用部分，配合室友群聊截图说明费用分摊争议，条目结构清晰适合新手参考。</p>
+              <div class="card-meta"><span>提交于 11-06</span><span class="score">评审 85 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/tingche-jiufen09/400/300" alt="停车位纠纷全程录像参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 8.2</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">视频举证</span>
+              <h3>停车位纠纷全程录像</h3>
+              <div class="card-tags"><span>车位占用</span><span>物业沟通</span><span>完整视频</span></div>
+              <p class="card-desc">从发现车位被占到物业到场协调共 14 分钟一镜到底，重点标注了 3 个关键对话节点，参赛者附上了车位产权证明与物业回执。</p>
+              <div class="card-meta"><span>提交于 11-05</span><span class="score">评审 83 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/jiaban-kaoqin33/400/300" alt="加班考勤记录对比参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 8.0</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">图文爆料</span>
+              <h3>加班考勤记录对比</h3>
+              <div class="card-tags"><span>职场爆料</span><span>考勤截图</span><span>绩效争议</span></div>
+              <p class="card-desc">将部门群通知的排班表与实际打卡记录逐日对照，标出 7 处不一致，附主管在群内确认加班的发言截图，适合关注职场证据整理的人参考。</p>
+              <div class="card-meta"><span>提交于 11-05</span><span class="score">评审 81 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/sushe-jingsai22/400/300" alt="宿舍评优争议记录参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 7.8</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">线索推理</span>
+              <h3>宿舍评优争议记录</h3>
+              <div class="card-tags"><span>校园事件</span><span>评分表</span><span>公示比对</span></div>
+              <p class="card-desc">参赛者对比公示评分表与原始打分记录，指出 2 项分数调整缺少说明，并通过时间线梳理了评优流程中的关键节点，逻辑链完整。</p>
+              <div class="card-meta"><span>提交于 11-04</span><span class="score">评审 79 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/zhuanzhang-liaotian41/400/300" alt="恋爱转账聊天记录梳理参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 7.5</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">图文爆料</span>
+              <h3>恋爱转账聊天记录梳理</h3>
+              <div class="card-tags"><span>情感纠葛</span><span>转账记录</span><span>对话截图</span></div>
+              <p class="card-desc">按月份整理了 23 笔转账记录，区分“节日红包”“日常转账”“借款”三类，并附上对应聊天语境，呈现方式克制、条目完整。</p>
+              <div class="card-meta"><span>提交于 11-04</span><span class="score">评审 77 分</span></div>
+            </div>
+          </article>
+
+          <article class="content-card">
+            <div class="card-thumb">
+              <img src="https://picsum.photos/seed/wuye-weixiu18/400/300" alt="物业维修报价单对比参赛作品封面" width="400" height="300" loading="lazy">
+              <span class="heat">热度 7.2</span>
+            </div>
+            <div class="card-body">
+              <span class="card-type">视频举证</span>
+              <h3>物业维修报价单对比</h3>
+              <div class="card-tags"><span>消费维权</span><span>报价单</span><span>维修过程</span></div>
+              <p class="card-desc">用视频记录了水管维修全过程，并将物业提供的报价单与五金店零售价逐项对照，标注出 5 项价格差异较大的材料。</p>
+              <div class="card-meta"><span>提交于 11-03</span><span class="score">评审 75 分</span></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 3. 最新更新/动态 -->
+      <section class="block" id="updates">
+        <div class="block-head">
+          <h2>今日赛程动态</h2>
+          <span class="en">Live Updates</span>
+          <span class="more">11 月 8 日 · 实时更新</span>
+        </div>
+        <div class="update-list">
+          <div class="update-item">
+            <span class="update-time">今天 09:30</span>
+            <div class="update-main"><strong>“电梯监控时间线复盘”票数突破 1200</strong><p>反转实锤类当前排名第 1，评审评语已更新，指出证据链中监控时间戳校准到位。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">今天 08:45</span>
+            <div class="update-main"><strong>职场爆料类新增 4 条参赛作品</strong><p>包括“季度考核排名异常记录”“离职交接清单争议”等，均附有截图与时间线。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">今天 07:20</span>
+            <div class="update-main"><strong>今日大赛投票通道已开启</strong><p>每用户每日可投 3 票，可分别投给不同类别作品，投票截止时间为 21:00。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">昨天 22:10</span>
+            <div class="update-main"><strong>“外卖单据定位疑点”进入线索推理类前 3</strong><p>参赛者补充了第 7 张单据的打印记录，评审已重新核算时间差。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">昨天 20:35</span>
+            <div class="update-main"><strong>消费维权类条目“物业维修报价单对比”完成审核</strong><p>审核状态由“待核验”转为“已通过”，可参与今日排名。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">昨天 18:00</span>
+            <div class="update-main"><strong>11 月 7 日每日大赛结果公布</strong><p>当日冠军为反转实锤类“快递签收笔迹比对”，亚军为图文爆料类“健身房私教课退费记录”。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11 月 6 日</span>
+            <div class="update-main"><strong>校园事件类新增“宿舍评优争议记录”</strong><p>参赛者公开了评分表原始扫描件与公示版本，两版差异成为讨论焦点。</p></div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11 月 5 日</span>
+            <div class="update-main"><strong>大赛评审团新增 2 名社区评审</strong><p>分别来自消费维权与邻里纠纷领域，负责对应类别条目的初评打分。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="block" id="categories">
+        <div class="block-head">
+          <h2>爆料分类入口</h2>
+          <span class="en">Categories</span>
+        </div>
+        <div class="category-grid">
+          <a href="/#picks" class="category-item">
+            <strong>反转实锤</strong>
+            <span>监控比对 · 证据链</span>
+            <span class="cat-count">今日 12 条</span>
+          </a>
+          <a href="/#picks" class="category-item">
+            <strong>线索推理</strong>
+            <span>单据分析 · 时间轴</span>
+            <span class="cat-count">今日 9 条</span>
+          </a>
+          <a href="/#picks" class="category-item">
+            <strong>图文爆料</strong>
+            <span>截图整理 · 账单拆解</span>
+            <span class="cat-count">今日 14 条</span>
+          </a>
+          <a href="/#picks" class="category-item">
+            <strong>视频举证</strong>
+            <span>全程录像 · 关键节点</span>
+            <span class="cat-count">今日 7 条</span>
+          </a>
+          <a href="/#categories" class="category-item">
+            <strong>职场爆料</strong>
+            <span>考勤 · 绩效 · 离职</span>
+            <span class="cat-count">今日 11 条</span>
+          </a>
+          <a href="/#categories" class="category-item">
+            <strong>邻里纠纷</strong>
+            <span>噪音 · 车位 · 物业</span>
+            <span class="cat-count">今日 8 条</span>
+          </a>
+          <a href="/#categories" class="category-item">
+            <strong>消费维权</strong>
+            <span>报价 · 退款 · 宣传</span>
+            <span class="cat-count">今日 10 条</span>
+          </a>
+          <a href="/#categories" class="category-item">
+            <strong>校园事件</strong>
+            <span>宿舍 · 评优 · 社团</span>
+            <span class="cat-count">今日 6 条</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析正文 -->
+      <section class="block" id="deepread">
+        <div class="block-head">
+          <h2>深度解析</h2>
+          <span class="en">Deep Read</span>
+        </div>
+        <div class="deep-read">
+          <h3>不同爆料类型的证据门槛差异</h3>
+          <p>在每日大赛中，四类参赛作品对证据的要求有明显区别。<strong>反转实锤</strong>类通常需要至少两段可相互印证的记录，例如监控时间线与物业值班日志；<strong>线索推理</strong>类更看重推导过程，单张截图不足以支撑，需要呈现完整的比对表格或时间轴；<strong>图文爆料</strong>类允许以聊天截图为主体，但要求对关键对话做上下文说明；<strong>视频举证</strong>类则强调连续性，剪辑过多会被评审标注为“证据完整度不足”。</p>
+          <ul>
+            <li><strong>反转实锤：</strong>至少 2 份独立来源的记录，时间戳可对齐。</li>
+            <li><strong>线索推理：</strong>推导步骤不少于 3 步，每步有对应材料。</li>
+            <li><strong>图文爆料：</strong>截图清晰可读，需标注对话双方身份关系。</li>
+            <li><strong>视频举证：</strong>关键片段连续，转场处需说明原因。</li>
+          </ul>
+
+          <h3>评审打分的三个核心维度</h3>
+          <p>每日大赛的评审团从<strong>证据完整度、逻辑自洽性、叙事清晰度</strong>三个维度打分，每项满分 30 分，社区投票折算 10 分，合计 100 分。证据完整度考察条目是否包含时间、地点、当事人、佐证材料四项基本要素；逻辑自洽性关注陈述与材料之间是否存在明显矛盾；叙事清晰度则衡量条目能否让读者在不额外追问的情况下理解事件全貌。11 月 7 日的冠军作品“快递签收笔迹比对”在三个维度分别拿到 28、27、26 分，胜在证据链闭环。</p>
+
+          <h3>参赛作品与日常爆料的区别</h3>
+          <p>日常爆料往往以片段式信息为主，而大赛参赛作品需要具备可复核的结构。具体差异体现在：参赛条目必须标注材料的时间范围，对涉及的第三方信息做脱敏处理，并在提交时附带一份不超过 200 字的摘要。评审在初评阶段会先看摘要与材料索引，再决定是否进入详细打分。对于想参与每日大赛入口的读者，先观察已通过审核的作品结构，比直接提交片段信息更容易获得有效反馈。</p>
+
+          <h3>如何判断一条爆料条目的参考价值</h3>
+          <p>浏览参赛作品时，可以优先关注条目是否附有<strong>原始材料</strong>而非二次转述。带有时间戳的监控、连续录屏、未经裁剪的聊天记录，通常比纯文字描述更值得细看。其次看条目是否对矛盾点做了正面回应，例如“外卖单据定位疑点”专门用一段说明商家可能存在的打印延迟，这种主动处理疑点的写法在评审中得分较高。最后看更新记录，提交后仍有补充材料的条目往往说明参赛者在持续核对证据。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 / 消费路径 -->
+      <section class="block" id="guide">
+        <div class="block-head">
+          <h2>浏览与参赛判断路径</h2>
+          <span class="en">Guide</span>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>先按类型筛选，缩小浏览范围</h3>
+              <p>如果关注证据链的完整性，优先看反转实锤与视频举证；如果更在意推理过程，从线索推理类入手；图文爆料类适合快速了解事件轮廓。每日大赛入口的分类入口按类型与领域双重划分，可以先选类型再看领域。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>用评审分与热度交叉判断</h3>
+              <p>评审分反映证据与逻辑质量，热度反映社区关注度。两者都高的条目通常兼具可读性与信息量；评审分高但热度一般的作品，往往在材料整理上更扎实，适合作为写作参考。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>查看条目摘要与材料索引</h3>
+              <p>每份参赛作品在详情页顶部提供 200 字以内的摘要和材料清单。先读摘要判断事件类型，再核对材料索引中的时间范围与证据种类，能较快判断这条爆料是否值得投入时间细读。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>对比同类作品的处理方式</h3>
+              <p>同一类别下选 2 到 3 条作品对照阅读，观察它们对矛盾点的处理差异。例如邻里纠纷类中，有的作品用时间轴呈现先后顺序，有的用对话截图还原沟通过程，对比之后更容易形成自己的判断标准。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h3>提交前先看已通过审核的作品结构</h3>
+              <p>如果准备参赛，先浏览当日已通过审核的条目，注意它们如何标注时间、如何脱敏、如何写摘要。每日大赛入口的“今日赛程动态”会显示新通过审核的作品，可以作为结构参考。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="block" id="faq">
+        <div class="block-head">
+          <h2>常见问答</h2>
+          <span class="en">FAQ</span>
+        </div>
+        <div class="faq-list">
+          <details class="faq">
+            <summary>黑料大赛每日大赛入口每天几点更新赛程？</summary>
+            <div class="faq-a">每日赛程在上午 9:00 前更新完毕，包括当日新通过审核的参赛作品、投票通道开启状态和评审进度。晚间 21:00 投票截止后，次日早晨公布前一日排名结果。</div>
+          </details>
+          <details class="faq">
+            <summary>反转实锤和线索推理有什么区别？</summary>
+            <div class="faq-a">反转实锤侧重用多份独立记录还原事件先后顺序，强调时间戳对齐和证据闭环；线索推理侧重展示推导过程，允许材料不完整，但要求每一步推论有对应依据。前者看“证据是否对得上”，后者看“推理是否站得住”。</div>
+          </details>
+          <details class="faq">
+            <summary>第一次参赛从哪个类型入手比较好？</summary>
+            <div class="faq-a">如果手头有完整的聊天记录和账单，可以从图文爆料类开始，结构要求相对直接；如果有连续的视频素材，视频举证类对剪辑要求不高但强调连续性。线索推理类适合善于整理时间线的人，反转实锤类最好有监控等多源记录。</div>
+          </details>
+          <details class="faq">
+            <summary>参赛作品的评审标准具体怎么算分？</summary>
+            <div class="faq-a">评审团从证据完整度、逻辑自洽性、叙事清晰度三项打分，每项 30 分，社区投票折算 10 分，合计 100 分。三项评分中若有一项低于 18 分，作品会进入复审环节，由两名评审重新核对材料。</div>
+          </details>
+          <details class="faq">
+            <summary>提交的爆料材料需要做哪些脱敏处理？</summary>
+            <div class="faq-a">涉及第三方姓名、手机号、具体门牌号和车牌号的信息需做遮挡或打码；聊天记录中的头像和昵称可以保留，但建议对非当事人信息做模糊处理。评审在初评时会检查脱敏情况，未处理的材料可能被退回补充。</div>
+          </details>
+          <details class="faq">
+            <summary>每日大赛的投票和评审分各占多少权重？</summary>
+            <div class="faq-a">评审分占 90 分，社区投票折算占 10 分。投票按当日该类别总票数比例换算，因此热度高但评审分低的条目很难进入前三。评审分与投票分会在作品详情页分别显示。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="block" id="comments">
+        <div class="block-head">
+          <h2>社区评论</h2>
+          <span class="en">Comments</span>
+        </div>
+        <div class="comment-grid">
+          <div class="comment"><div class="comment-head"><strong>夜航船_07</strong><time>今天 10:12</time></div><p>电梯监控那条的时间轴做得真细，连声控灯亮起的时间都对上了，这种证据链看着舒服。</p></div>
+          <div class="comment"><div class="comment-head"><strong>半糖不加冰</strong><time>今天 09:48</time></div><p>外卖单据那篇的表格比文字好读，18 分钟的时间差一眼就看出来了，建议新手参考这种呈现方式。</p></div>
+          <div class="comment"><div class="comment-head"><strong>旧巷子口</strong><time>今天 09:20</time></div><p>职场爆料类今天新增的几条质量参差，有的只有一张截图，连时间都没标，估计过不了复审。</p></div>
+          <div class="comment"><div class="comment-head"><strong>雾里看花_23</strong><time>今天 08:55</time></div><p>合租水电费那篇虽然热度一般，但账单拆解得清楚，适合第一次写图文爆料的人模仿结构。</p></div>
+          <div class="comment"><div class="comment-head"><strong>老猫晒太阳</strong><time>今天 08:30</time></div><p>停车位纠纷的视频太长了，关键节点标注如果能放在前面会更好，14 分钟看到一半才进正题。</p></div>
+          <div class="comment"><div class="comment-head"><strong>青椒炒肉丝</strong><time>昨天 22:40</time></div><p>昨天的快递签收笔迹比对拿冠军没话说，两份签收单的笔锋对比确实明显。</p></div>
+          <div class="comment"><div class="comment-head"><strong>一只阿飘</strong><time>昨天 21:55</time></div><p>线索推理类的评审分普遍偏高啊，感觉逻辑自洽性这项给分比较宽松。</p></div>
+          <div class="comment"><div class="comment-head"><strong>南山南_88</strong><time>昨天 20:18</time></div><p>宿舍评优那条的公示对比做得不错，但涉及的学生信息是不是应该再模糊一点？</p></div>
+          <div class="comment"><div class="comment-head"><strong>橘子汽水味</strong><time>昨天 19:02</time></div><p>恋爱转账那条分类归在情感纠葛里有点勉强，更像消费纠纷，不过整理得确实有条理。</p></div>
+          <div class="comment"><div class="comment-head"><strong>键盘上的烟灰</strong><time>昨天 17:30</time></div><p>视频举证类今天只有 7 条，是不是审核太严了？连续录像的要求把好多人都挡在外面。</p></div>
+          <div class="comment"><div class="comment-head"><strong>晚风急</strong><time>11 月 7 日</time></div><p>物业维修报价单对比的视频里，五金店价格那段如果能拍到店招会更有说服力。</p></div>
+          <div class="comment"><div class="comment-head"><strong>数据搬运工</strong><time>11 月 7 日</time></div><p>每日大赛入口的分类入口把类型和领域分开列，找起来确实方便，比翻列表快多了。</p></div>
+          <div class="comment"><div class="comment-head"><strong>不熬夜星人</strong><time>11 月 6 日</time></div><p>今天职场类新增的“季度考核排名异常记录”还没通过审核？上午看到的现在还是待核验状态。</p></div>
+          <div class="comment"><div class="comment-head"><strong>行舟绿水前</strong><time>11 月 6 日</time></div><p>评审评语里提到“叙事清晰度”扣分点，我回头看了几篇，确实有些条目开头铺垫太长。</p></div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="block" id="news">
+        <div class="block-head">
+          <h2>相关资讯</h2>
+          <span class="en">News</span>
+        </div>
+        <div class="news-list">
+          <article class="news-item">
+            <span class="news-date">11 月 8 日</span>
+            <div class="news-body">
+              <h3>每日大赛新增“材料索引”强制填写项</h3>
+              <p>自 11 月 8 日起提交的参赛作品需在摘要下方列出材料清单与时间范围，未填写将无法进入初评。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <span class="news-date">11 月 7 日</span>
+            <div class="news-body">
+              <h3>11 月 7 日大赛结果：快递签收笔迹比对夺冠</h3>
+              <p>当日共 38 条作品通过审核，反转实锤类“快递签收笔迹比对”以 81 分位列第一，图文爆料类“健身房私教课退费记录”获第二。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <span class="news-date">11 月 6 日</span>
+            <div class="news-body">
+              <h3>职场爆料类条目数量连续三天上升</h3>
+              <p>11 月 4 日至 6 日，职场爆料类新增条目从 7 条增至 11 条，考勤记录与绩效争议成为主要素材方向。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <span class="news-date">11 月 5 日</span>
+            <div class="news-body">
+              <h3>评审团调整视频举证类连续性判定规则</h3>
+              <p>新规则明确转场超过 3 次需逐次说明原因，否则“证据完整度”单项扣分上限由 5 分提高至 8 分。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <span class="news-date">11 月 3 日</span>
+            <div class="news-body">
+              <h3>社区讨论焦点：脱敏处理是否影响证据可信度</h3>
+              <p>多名参赛者在讨论区提出，打码后部分材料难以核对，评审团回复称可在复审环节提交未打码版本供核验。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <span class="news-date">10 月 30 日</span>
+            <div class="news-body">
+              <h3>消费维权类新增“报价单对照”模板</h3>
+              <p>大赛提供统一的报价单对照模板，包含材料名称、数量、单价、市面参考价四列，供参赛者下载后填写。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="block" id="related">
+        <div class="block-head">
+          <h2>相关推荐</h2>
+          <span class="en">Related</span>
+        </div>
+        <div class="tag-index">
+          <a href="/#picks">监控时间戳校准方法</a>
+          <a href="/#picks">考勤截图如何拼接时间线</a>
+          <a href="/#picks">聊天记录上下文标注示例</a>
+          <a href="/#picks">报价单市面比价渠道</a>
+          <a href="/#picks">视频举证转场说明写法</a>
+          <a href="/#picks">邻里纠纷沟通记录整理</a>
+          <a href="/#picks">租房账单公摊计算</a>
+          <a href="/#picks">校园评优评分表比对</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充：热门榜单 -->
+      <section class="block" id="ranking">
+        <div class="block-head">
+          <h2>今日热门榜单</h2>
+          <span class="en">Ranking</span>
+          <span class="more">11 月 8 日 10:00 更新</span>
+        </div>
+        <div class="rank-list">
+          <div class="rank-item">
+            <span class="rank-no">1</span>
+            <div class="rank-info"><strong>电梯监控时间线复盘</strong><span>反转实锤 · 评审 92 分 · 32 条讨论</span></div>
+            <span class="rank-heat">1.2k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-no">2</span>
+            <div class="rank-info"><strong>外卖单据定位疑点</strong><span>线索推理 · 评审 89 分 · 28 条讨论</span></div>
+            <span class="rank-heat">986</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-no">3</span>
+            <div class="rank-info"><strong>合租水电费明细曝光</strong><span>图文爆料 · 评审 85 分 · 19 条讨论</span></div>
+            <span class="rank-heat">742</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-no">4</span>
+            <div class="rank-info"><strong>停车位纠纷全程录像</strong><span>视频举证 · 评审 83 分 · 14 条讨论</span></div>
+            <span class="rank-heat">635</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-no">5</span>
+            <div class="rank-info"><strong>加班考勤记录对比</strong><span>图文爆料 · 评审 81 分 · 11 条讨论</span></div>
+            <span class="rank-heat">512</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-no">6</span>
+            <div class="rank-info"><strong>宿舍评优争议记录</strong><span>线索推理 · 评审 79 分 · 9 条讨论</span></div>
+            <span class="rank-heat">437</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右侧辅助栏 -->
+    <aside class="sidebar" aria-label="辅助信息">
+      <div class="side-card">
+        <h2>今日更新流</h2>
+        <div class="side-list">
+          <a href="/#updates"><span class="idx">01</span>职场爆料新增 4 条<span class="side-tag">09:30</span></a>
+          <a href="/#updates"><span class="idx">02</span>投票通道开启<span class="side-tag">07:20</span></a>
+          <a href="/#updates"><span class="idx">03</span>外卖单据补充材料<span class="side-tag">昨天</span></a>
+          <a href="/#updates"><span class="idx">04</span>物业报价单通过审核<span class="side-tag">昨天</span></a>
+          <a href="/#news"><span class="idx">05</span>材料索引强制填写<span class="side-tag">11-08</span></a>
+          <a href="/#news"><span class="idx">06</span>视频举证规则调整<span class="side-tag">11-05</span></a>
+        </div>
+      </div>
+      <div class="side-card">
+        <h2>赛程速查</h2>
+        <div class="side-list">
+          <a href="/#updates"><span class="idx">·</span>今日提交截止 20:30</a>
+          <a href="/#updates"><span class="idx">·</span>投票截止 21:00</a>
+          <a href="/#updates"><span class="idx">·</span>次日排名 09:00 公布</a>
+          <a href="/#faq"><span class="idx">·</span>复审申请 48 小时内</a>
+          <a href="/#guide"><span class="idx">·</span>材料脱敏要求</a>
+          <a href="/#guide"><span class="idx">·</span>摘要字数上限 200 字</a>
+        </div>
+      </div>
+      <div class="side-card">
+        <h2>高分条目参考</h2>
+        <div class="side-list">
+          <a href="/#picks"><span class="idx">01</span>快递签收笔迹比对<span class="side-tag">81分</span></a>
+          <a href="/#picks"><span class="idx">02</span>健身房私教课退费记录<span class="side-tag">78分</span></a>
+          <a href="/#picks"><span class="idx">03</span>季度考核排名异常记录<span class="side-tag">76分</span></a>
+          <a href="/#picks"><span class="idx">04</span>噪音投诉时间线整理<span class="side-tag">74分</span></a>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand">
+            <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+              <rect width="100" height="100" rx="20" fill="#1f2531"/>
+              <path d="M25 70 L50 25 L75 70 Z" fill="#f59e0b"/>
+              <circle cx="50" cy="58" r="7" fill="#1f2531"/>
+            </svg>
+            <span class="brand-text">黑料大赛每日大赛入口</span>
+          </div>
+          <p>聚合网络爆料竞技的每日赛程、参赛作品与分类条目，为关注爆料内容与证据整理方法的读者提供可浏览的信息入口。</p>
+        </div>
+        <div class="footer-col">
+          <h3>赛事内容</h3>
+          <ul>
+            <li><a href="/#overview">赛事概览</a></li>
+            <li><a href="/#picks">精选作品</a></li>
+            <li><a href="/#updates">今日动态</a></li>
+            <li><a href="/#ranking">热门榜单</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>分类方向</h3>
+          <ul>
+            <li><a href="/#categories">反转实锤</a></li>
+            <li><a href="/#categories">线索推理</a></li>
+            <li><a href="/#categories">图文爆料</a></li>
+            <li><a href="/#categories">视频举证</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>参与参考</h3>
+          <ul>
+            <li><a href="/#guide">浏览路径</a></li>
+            <li><a href="/#faq">常见问答</a></li>
+            <li><a href="/#comments">社区评论</a></li>
+            <li><a href="/#news">相关资讯</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 黑料大赛每日大赛入口 · 内容聚合示例页</span>
+        <span class="sample-note">部分内容为示例数据，仅用于展示页面结构</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 轻量交互：平滑锚点滚动（考虑吸顶偏移，由 CSS scroll-padding-top 处理）
+    document.querySelectorAll('a[href^="/#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = this.getAttribute('href').slice(2);
+        var target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', '/' + '#' + id);
+        }
+      });
+    });
+  </script>
+</body>
+                </html>
