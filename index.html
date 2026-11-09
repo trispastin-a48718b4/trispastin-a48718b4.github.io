@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日大赛在线观看 - 赛事直播与赛程聚合</title>
+  <meta name="description" content="每日大赛在线观看聚合当日赛事直播、赛程动态与分类入口，覆盖电竞、体育、知识问答和创作挑战，适合想快速找到可看比赛与赛程判断依据的观众。">
+  <meta name="keywords" content="赛事直播入口,赛程动态,电竞比赛,体育对抗,知识问答挑战">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f1b2d'/%3E%3Cpath d='M8 22L16 8l8 14H8z' fill='%23f6b73c'/%3E%3Ccircle cx='16' cy='22' r='3' fill='%23f6b73c'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --panel: #ffffff;
+      --ink: #1c2737;
+      --ink-soft: #42526b;
+      --muted: #6f7d91;
+      --line: #e2e8f0;
+      --brand: #0f1b2d;
+      --brand-deep: #0a1322;
+      --accent: #f6b73c;
+      --accent-soft: #fff4dd;
+      --accent-ink: #8a5a00;
+      --teal: #1f7a6e;
+      --teal-soft: #e2f3f0;
+      --rose: #b23a48;
+      --rose-soft: #fdecef;
+      --radius: 14px;
+      --radius-sm: 9px;
+      --shadow: 0 6px 24px rgba(15, 27, 45, 0.06);
+      --shadow-sm: 0 2px 8px rgba(15, 27, 45, 0.04);
+      --sticky-offset: 112px;
+      --font: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
+    .wrap {
+      width: min(1360px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .sticky-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .notice-bar {
+      background: var(--brand-deep);
+      color: #e8edf5;
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .notice-bar .wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 38px;
+      flex-wrap: wrap;
+      padding: 6px 0;
+    }
+    .notice-bar strong {
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .notice-bar span { color: #b9c4d4; }
+    .site-header {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 0 rgba(15,27,45,0.03);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      min-height: 66px;
+      flex-wrap: wrap;
+      padding: 8px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      color: var(--brand);
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: var(--brand);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      box-shadow: inset 0 -3px 0 rgba(255,255,255,0.08);
+    }
+    .brand-mark svg { width: 24px; height: 24px; }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+    .header-nav a {
+      padding: 7px 11px;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .header-nav a:hover, .header-nav a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      outline: none;
+    }
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 6px 5px 14px;
+      gap: 6px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .search-box:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(246, 183, 60, 0.18);
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      width: 150px;
+      color: var(--ink);
+      outline: none;
+      padding: 4px 0;
+    }
+    .search-box input::placeholder { color: #9aa6b5; }
+    .search-box button {
+      border: none;
+      background: var(--brand);
+      color: white;
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .search-box button:hover { background: #1a2a42; }
+    .btn-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--brand-deep);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-live .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 3px rgba(178,58,72,0.18);
+    }
+    .filter-note {
+      display: none;
+      font-size: 12px;
+      color: var(--accent-ink);
+      background: var(--accent-soft);
+      border: 1px solid #f0d59b;
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+    .filter-note.show { display: inline-block; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(118deg, #0d1728 0%, #152742 58%, #1d3356 100%);
+      color: #eef3f9;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px; top: -80px;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(246,183,60,0.18) 0%, rgba(246,183,60,0) 68%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      padding: 40px 0 38px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(246,183,60,0.12);
+      border: 1px solid rgba(246,183,60,0.25);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.12;
+      margin: 0 0 14px;
+      letter-spacing: -1px;
+      font-weight: 850;
+      color: #ffffff;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: #c3cfdf;
+      max-width: 600px;
+      margin: 0 0 22px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--brand-deep);
+      font-weight: 750;
+      font-size: 14px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-primary:hover { background: #ffc85a; }
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #eef3f9;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .cta-secondary:hover { background: rgba(255,255,255,0.14); }
+    .hero-visual {
+      position: relative;
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-svg { width: 100%; max-width: 420px; height: auto; }
+
+    /* MAIN LAYOUT */
+    .main-wrap {
+      display: grid;
+      grid-template-columns: 172px minmax(0, 1fr) 248px;
+      gap: 26px;
+      padding: 28px 0 10px;
+      align-items: start;
+    }
+    .channel-rail {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 10px);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .channel-rail h2 {
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 2px 8px 10px;
+      font-weight: 700;
+    }
+    .channel-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .channel-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      padding: 8px 9px;
+      border-radius: 8px;
+      transition: background 0.14s, color 0.14s;
+      line-height: 1.3;
+    }
+    .channel-list a:hover, .channel-list a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      outline: none;
+    }
+    .channel-list a .ch-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #c3cfdf;
+      flex: 0 0 auto;
+    }
+    .channel-list a[href="#dianjing"] .ch-dot { background: #3b82f6; }
+    .channel-list a[href="#tiyu"] .ch-dot { background: #16a34a; }
+    .channel-list a[href="#zhishi"] .ch-dot { background: #8b5cf6; }
+    .channel-list a[href="#chuangzuo"] .ch-dot { background: #f59e0b; }
+    .channel-list a[href="#qipai"] .ch-dot { background: #ef4444; }
+    .channel-list a[href="#sudi"] .ch-dot { background: #06b6d4; }
+    .channel-list a[href="#tuandui"] .ch-dot { background: #ec4899; }
+    .channel-list a[href="#xinren"] .ch-dot { background: #84cc16; }
+
+    .content-col { min-width: 0; }
+    .side-col { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 20px 22px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 22px;
+      scroll-margin-top: var(--sticky-offset);
+    }
+    .section:last-child { margin-bottom: 0; }
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .sec-head h2 {
+      font-size: 20px;
+      margin: 0;
+      letter-spacing: -0.3px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .sec-head h2::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 4px;
+      flex: 0 0 auto;
+    }
+    .sec-more {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      border-bottom: 1px dashed transparent;
+      white-space: nowrap;
+    }
+    .sec-more:hover { color: var(--accent-ink); border-bottom-color: var(--accent); }
+    .lead-text {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .lead-text + .lead-text { margin-top: 12px; }
+    .tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 9px;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+    .tag.accent { background: var(--accent-soft); border-color: #f0d59b; color: var(--accent-ink); }
+    .tag.teal { background: var(--teal-soft); border-color: #bfe3dd; color: var(--teal); }
+    .tag.rose { background: var(--rose-soft); border-color: #f4c7ce; color: var(--rose); }
+    .empty-state {
+      display: none;
+      padding: 26px 10px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+    }
+    .empty-state.show { display: block; }
+
+    /* FEATURED CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 2px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.16s, box-shadow 0.16s;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #dfe6ef;
+    }
+    .card-body { padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .card-title {
+      font-size: 14.5px;
+      font-weight: 750;
+      margin: 0;
+      line-height: 1.35;
+      color: var(--ink);
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .hot { color: var(--rose); font-weight: 700; display: inline-flex; align-items: center; gap: 3px; }
+    .hot::before { content: "▲"; font-size: 9px; }
+
+    /* UPDATE LIST */
+    .update-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .update-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .update-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .update-list li:first-child { padding-top: 0; }
+    .up-time {
+      flex: 0 0 76px;
+      color: var(--muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      padding-top: 1px;
+    }
+    .up-main { flex: 1; min-width: 0; }
+    .up-main b { font-weight: 750; color: var(--ink); }
+    .up-main .sub { color: var(--muted); font-size: 12.5px; display: block; margin-top: 1px; }
+
+    /* CATEGORY GRID */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 13px 12px;
+      background: #fff;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+      text-align: left;
+    }
+    .cat-item:hover, .cat-item:focus-visible {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      outline: none;
+    }
+    .cat-item strong { font-size: 14px; color: var(--ink); }
+    .cat-item span { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+    /* DEEP DIVE */
+    .deep h3 {
+      font-size: 16.5px;
+      margin: 20px 0 8px;
+      letter-spacing: -0.2px;
+      font-weight: 780;
+    }
+    .deep h3:first-of-type { margin-top: 4px; }
+    .deep p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin: 0 0 10px;
+    }
+    .deep ul {
+      margin: 6px 0 12px;
+      padding-left: 20px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .deep li { margin-bottom: 4px; }
+    .compare-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0 4px;
+    }
+    .compare-panel > div {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      background: var(--bg);
+    }
+    .compare-panel h4 { margin: 0 0 6px; font-size: 13.5px; color: var(--ink); }
+    .compare-panel p { font-size: 12.8px; margin: 0 0 4px; color: var(--ink-soft); line-height: 1.6; }
+
+    /* GUIDE STEPS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      counter-reset: step;
+      margin-top: 2px;
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      counter-increment: step;
+      flex: 0 0 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--brand);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+    }
+    .step-num::before { content: counter(step, decimal-leading-zero); }
+    .step-body h4 { margin: 0 0 3px; font-size: 14px; }
+    .step-body p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* FAQ */
+    .faq-list details {
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+    }
+    .faq-list details:last-child { border-bottom: none; }
+    .faq-list summary {
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 14px;
+      padding: 10px 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: "+";
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 400;
+      flex: 0 0 auto;
+      line-height: 1;
+    }
+    .faq-list details[open] summary::after { content: "–"; color: var(--accent-ink); }
+    .faq-list details p {
+      margin: 0 0 12px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      padding-right: 18px;
+    }
+
+    /* COMMENTS */
+    .comment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      margin-top: 2px;
+    }
+    .comment {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 11px 13px;
+      background: #fff;
+    }
+    .comment-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .comment-name { font-size: 12.5px; font-weight: 750; color: var(--ink); }
+    .comment-time { font-size: 11px; color: var(--muted); }
+    .comment p { margin: 0; font-size: 12.8px; color: var(--ink-soft); line-height: 1.6; }
+
+    /* NEWS */
+    .news-list { display: flex; flex-direction: column; gap: 0; }
+    .news-item {
+      display: flex;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-item:first-child { padding-top: 0; }
+    .news-thumb {
+      flex: 0 0 96px;
+      width: 96px;
+      height: 68px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #dfe6ef;
+    }
+    .news-body { flex: 1; min-width: 0; }
+    .news-body h3 { margin: 0 0 3px; font-size: 14px; font-weight: 750; line-height: 1.4; }
+    .news-body time { font-size: 11.5px; color: var(--muted); display: block; margin-bottom: 3px; }
+    .news-body p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+
+    /* RELATED TAGS */
+    .tag-index { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-index a {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 13px;
+      transition: all 0.14s;
+    }
+    .tag-index a:hover, .tag-index a:focus-visible {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+      outline: none;
+    }
+
+    /* SIDEBAR */
+    .side-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .side-card h2 {
+      font-size: 15px;
+      margin: 0 0 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .side-card h2::before {
+      content: "";
+      width: 3px; height: 14px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .rank-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+    .rank-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+    }
+    .rank-num {
+      flex: 0 0 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+    .rank-list li:nth-child(1) .rank-num { background: var(--accent); color: var(--brand-deep); }
+    .rank-list li:nth-child(2) .rank-num { background: #f0d59b; color: var(--accent-ink); }
+    .rank-list li:nth-child(3) .rank-num { background: #e2e8f0; color: var(--ink-soft); }
+    .rank-list b { color: var(--ink); font-weight: 700; }
+    .side-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 10px 0 0;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: var(--brand-deep);
+      color: #c3cfdf;
+      margin-top: 34px;
+      padding: 34px 0 22px;
+      font-size: 13px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 26px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; color: #fff; margin-bottom: 8px; }
+    .footer-brand .brand-mark { width: 30px; height: 30px; border-radius: 8px; background: rgba(255,255,255,0.08); }
+    .footer-brand .brand-mark svg { width: 18px; height: 18px; }
+    .footer-col h3 {
+      font-size: 11.5px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #8fa0b8;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+    .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .footer-col a { color: #c3cfdf; font-size: 13px; }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 16px;
+      font-size: 12px;
+      color: #8fa0b8;
+      line-height: 1.6;
+    }
+    .footer-bottom p { margin: 0; }
+    .footer-bottom .sample-note { color: #6f8098; font-size: 11.5px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1120px) {
+      .main-wrap { grid-template-columns: 160px minmax(0, 1fr); }
+      .side-col { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 20px; }
+      .hero-visual { min-height: 160px; justify-content: flex-start; }
+      .hero-svg { max-width: 320px; }
+    }
+    @media (max-width: 900px) {
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 740px) {
+      .wrap { width: calc(100% - 28px); }
+      .header-inner { gap: 12px; }
+      .header-actions { margin-left: 0; width: 100%; }
+      .search-box { flex: 1; }
+      .search-box input { width: 100%; }
+      .main-wrap { grid-template-columns: 1fr; gap: 18px; padding-top: 18px; }
+      .channel-rail {
+        position: static;
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding: 8px 10px;
+        border-radius: var(--radius-sm);
+      }
+      .channel-rail h2 { display: none; }
+      .channel-list { flex-direction: row; gap: 4px; }
+      .channel-list a { white-space: nowrap; padding: 7px 10px; font-size: 12.5px; }
+      .channel-list a .ch-dot { display: none; }
+      .card-grid { grid-template-columns: 1fr 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .comment-grid { grid-template-columns: 1fr; }
+      .compare-panel { grid-template-columns: 1fr; }
+      .side-col { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .news-thumb { flex: 0 0 76px; width: 76px; height: 56px; }
+      .up-time { flex: 0 0 62px; font-size: 11px; }
+      .hero-inner { padding: 28px 0 26px; }
+      .hero h1 { font-size: 28px; }
+      .section { padding: 16px 15px 18px; }
+      .sec-head h2 { font-size: 18px; }
+      .footer-bottom { flex-direction: column; gap: 6px; }
+    }
+    @media (max-width: 430px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .header-nav { font-size: 12.5px; gap: 0; }
+      .header-nav a { padding: 5px 7px; }
+      .brand { font-size: 17px; }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-shell">
+  <div class="notice-bar" id="notice">
+    <div class="wrap">
+      <strong>今日赛程更新</strong>
+      <span>11 月 8 日新增 9 场直播：英雄联盟半决赛、NBA 常规赛、围棋快棋赛、知识问答擂台等 · 2 场已结束</span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 18L12 4l8 14H4z" fill="#F6B73C"/>
+            <circle cx="12" cy="18" r="2.6" fill="#F6B73C"/>
+          </svg>
+        </span>
+        每日大赛在线观看
+      </a>
+      <nav class="header-nav" aria-label="主题导航">
+        <a href="#shouye">首屏</a>
+        <a href="#gaishu">领域概览</a>
+        <a href="#jingxuan">精选推荐</a>
+        <a href="#dongtai">最新动态</a>
+        <a href="#fenlei">分类入口</a>
+        <a href="#jiedu">深度解析</a>
+        <a href="#zhinan">体验指南</a>
+        <a href="#pinlun">用户评论</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box" role="search">
+          <input type="search" id="searchInput" placeholder="搜索赛事、类型、条目…" aria-label="搜索页面内容">
+          <button type="button" id="searchBtn">查找</button>
+        </div>
+        <button class="btn-live" type="button" onclick="document.getElementById('dongtai').scrollIntoView({behavior:'smooth'})">
+          <span class="dot" aria-hidden="true"></span> 今日直播
+        </button>
+        <span class="filter-note" id="filterNote">已筛选</span>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="shouye">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="hero-kicker">DAILY COMPETITION STREAM</div>
+        <h1>每日大赛在线观看</h1>
+        <p class="hero-desc">
+          汇聚当天可观看的电竞赛事、体育对抗、知识问答与创作挑战直播，按开赛时间排列，附赛程看点与直播状态，方便快速决定先看哪一场。
+        </p>
+        <div class="hero-cta">
+          <a class="cta-primary" href="#dongtai">查看今日 9 场直播</a>
+          <a class="cta-secondary" href="#fenlei">按类型筛选</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg class="hero-svg" viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="24" width="400" height="232" rx="20" fill="#12213A" stroke="#2A4062" stroke-width="1"/>
+          <rect x="34" y="48" width="168" height="10" rx="5" fill="#F6B73C" opacity="0.85"/>
+          <rect x="34" y="70" width="118" height="7" rx="3.5" fill="#5B7294"/>
+          <rect x="34" y="86" width="146" height="7" rx="3.5" fill="#3D5474"/>
+          <rect x="34" y="112" width="352" height="1" fill="#2A4062"/>
+          <circle cx="74" cy="144" r="15" fill="#F6B73C" opacity="0.2"/>
+          <circle cx="74" cy="144" r="7" fill="#F6B73C"/>
+          <rect x="102" y="137" width="118" height="9" rx="4.5" fill="#98AAC4"/>
+          <rect x="102" y="153" width="80" height="6" rx="3" fill="#4F6788"/>
+          <rect x="34" y="182" width="352" height="1" fill="#2A4062"/>
+          <circle cx="74" cy="212" r="15" fill="#1F7A6E" opacity="0.25"/>
+          <circle cx="74" cy="212" r="7" fill="#4FD1C5"/>
+          <rect x="102" y="205" width="142" height="9" rx="4.5" fill="#98AAC4"/>
+          <rect x="102" y="221" width="96" height="6" rx="3" fill="#4F6788"/>
+          <rect x="300" y="196" width="86" height="34" rx="10" fill="#F6B73C"/>
+          <path d="M322 213h16M330 205v16" stroke="#0A1322" stroke-width="2.6" stroke-linecap="round"/>
+          <rect x="300" y="128" width="86" height="34" rx="10" fill="#1B2C48" stroke="#3D5474" stroke-width="1"/>
+          <circle cx="322" cy="145" r="5" fill="#4FD1C5"/>
+          <rect x="334" y="139" width="36" height="5" rx="2.5" fill="#98AAC4"/>
+          <rect x="334" y="148" width="24" height="5" rx="2.5" fill="#5B7294"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap main-wrap">
+    <!-- LEFT CHANNEL RAIL -->
+    <aside class="channel-rail" aria-label="频道索引">
+      <h2>频道索引</h2>
+      <ul class="channel-list">
+        <li><a href="#dianjing"><span class="ch-dot"></span>电竞直播</a></li>
+        <li><a href="#tiyu"><span class="ch-dot"></span>体育对抗</a></li>
+        <li><a href="#zhishi"><span class="ch-dot"></span>知识问答</a></li>
+        <li><a href="#chuangzuo"><span class="ch-dot"></span>创作挑战</a></li>
+        <li><a href="#qipai"><span class="ch-dot"></span>棋牌对局</a></li>
+        <li><a href="#sudi"><span class="ch-dot"></span>速通竞逐</a></li>
+        <li><a href="#tuandui"><span class="ch-dot"></span>团队联赛</a></li>
+        <li><a href="#xinren"><span class="ch-dot"></span>新人赛</a></li>
+      </ul>
+    </aside>
+
+    <!-- CENTER CONTENT -->
+    <div class="content-col" id="contentStart">
+
+      <!-- 1. OVERVIEW -->
+      <section class="section" id="gaishu">
+        <div class="sec-head">
+          <h2>今日大赛领域概览</h2>
+          <span class="tag accent">2026-11-08 更新</span>
+        </div>
+        <p class="lead-text">
+          每日大赛在线观看所覆盖的内容，大致分为几个清晰的方向：电竞项目以《英雄联盟》《无畏契约》《DOTA2》等团队对抗为主，赛程密集、直播场次多；体育对抗包含篮球、足球和格斗类赛事，节奏快、适合片段式观看；知识问答与创作挑战更偏个人表现，形式包括限时答题擂台、即兴创作赛和写作挑战。棋牌对局与速通竞逐则属于技巧型赛事，单场时间跨度较大，适合关注规则细节的观众。
+        </p>
+        <p class="lead-text">
+          当前值得关注的具体条目集中在几个方向：英雄联盟全球半决赛进入第三日，无畏契约冠军巡回赛小组赛收官，NBA 常规赛西部两支球队背靠背交手，围棋快棋赛八强战在下午进行。知识问答擂台本周进入月赛阶段，创作挑战则以“48 小时命题写作”为主题开放直播。如果只打算看一场，优先根据开赛时间和感兴趣的项目做选择。
+        </p>
+      </section>
+
+      <!-- 2. FEATURED -->
+      <section class="section" id="jingxuan">
+        <div class="sec-head">
+          <h2>精选内容推荐</h2>
+          <a class="sec-more" href="#dongtai">全部更新 →</a>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/lol-semi1128/400/300" width="400" height="300" loading="lazy" alt="英雄联盟全球半决赛第三日直播画面">
+            <div class="card-body">
+              <h3 class="card-title">英雄联盟全球半决赛第三日</h3>
+              <p class="card-desc">四强对决进入第二轮，今日进行两场 BO5，首场由 LPL 二号种子对阵 LCK 一号种子，BP 阶段与下路对线是主要观察点。</p>
+              <div class="card-tags"><span class="tag accent">电竞</span><span class="tag">BO5</span><span class="tag">半决赛</span></div>
+              <div class="card-meta"><span class="hot">热度 98</span><span>19:00 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/valorant-group08/400/300" width="400" height="300" loading="lazy" alt="无畏契约冠军巡回赛小组赛现场">
+            <div class="card-body">
+              <h3 class="card-title">无畏契约冠军巡回赛小组赛</h3>
+              <p class="card-desc">小组赛收官日共三场，每场都为出线关键战。A 组头名争夺中，两支队伍近期地图池高度重叠，选图博弈值得留意。</p>
+              <div class="card-tags"><span class="tag accent">电竞</span><span class="tag">小组赛</span><span class="tag">出线战</span></div>
+              <div class="card-meta"><span class="hot">热度 91</span><span>17:30 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/nba-west1128/400/300" width="400" height="300" loading="lazy" alt="NBA常规赛西部焦点战跳球瞬间">
+            <div class="card-body">
+              <h3 class="card-title">NBA 常规赛西部焦点战</h3>
+              <p class="card-desc">西部第五与第七直接交手，双方此前两次交锋各取一胜。本场关注点在于替补轮换得分与三分命中率，末节走势通常决定胜负。</p>
+              <div class="card-tags"><span class="tag teal">体育</span><span class="tag">常规赛</span><span class="tag">西部</span></div>
+              <div class="card-meta"><span class="hot">热度 89</span><span>10:30 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/weiqi-baqiang/400/300" width="400" height="300" loading="lazy" alt="围棋快棋赛八强战对局棋盘">
+            <div class="card-body">
+              <h3 class="card-title">围棋快棋赛八强战</h3>
+              <p class="card-desc">八强战采用 30 秒一步的快棋规则，四盘对局同时进行。中盘战斗与官子收束是快棋赛的主要看点，适合关注棋风差异的观众。</p>
+              <div class="card-tags"><span class="tag">棋牌</span><span class="tag">快棋</span><span class="tag">八强</span></div>
+              <div class="card-meta"><span class="hot">热度 72</span><span>14:00 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/quiz-yuesai/400/300" width="400" height="300" loading="lazy" alt="知识问答擂台月赛现场选手答题">
+            <div class="card-body">
+              <h3 class="card-title">知识问答擂台月赛</h3>
+              <p class="card-desc">本周进入月赛阶段，题型涵盖历史、科学与生活常识。抢答环节与风险题选择策略是拉开分差的关键，适合喜欢答题类内容的观众。</p>
+              <div class="card-tags"><span class="tag">知识</span><span class="tag">月赛</span><span class="tag">抢答</span></div>
+              <div class="card-meta"><span class="hot">热度 68</span><span>20:00 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/writing-48h/400/300" width="400" height="300" loading="lazy" alt="48小时命题写作挑战直播工作台">
+            <div class="card-body">
+              <h3 class="card-title">48 小时命题写作挑战</h3>
+              <p class="card-desc">限时命题创作赛，选手在 48 小时内完成一篇短篇小说并提交。直播内容为写作过程与阶段评审，适合想观察创作流程的观众。</p>
+              <div class="card-tags"><span class="tag accent">创作</span><span class="tag">命题写作</span><span class="tag">直播</span></div>
+              <div class="card-meta"><span class="hot">热度 64</span><span>今天 12:00 开播</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/speedrun-any/400/300" width="400" height="300" loading="lazy" alt="速通竞逐Any%项目计时画面">
+            <div class="card-body">
+              <h3 class="card-title">经典游戏速通竞逐 Any%</h3>
+              <p class="card-desc">三款经典动作游戏速通连播，选手使用 Any% 规则。路线选择与关键帧操作决定成绩，适合对速通规则和路线优化感兴趣的观众。</p>
+              <div class="card-tags"><span class="tag">速通</span><span class="tag">Any%</span><span class="tag">竞逐</span></div>
+              <div class="card-meta"><span class="hot">热度 61</span><span>21:30 开赛</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="card-img" src="https://picsum.photos/seed/team-league/400/300" width="400" height="300" loading="lazy" alt="团队联赛多人协作对抗赛场景">
+            <div class="card-body">
+              <h3 class="card-title">团队联赛 5v5 协作对抗</h3>
+              <p class="card-desc">每队五人的协作对抗赛，今日进行常规轮次。团队指挥与资源分配是核心变量，适合想看战术配合而非个人操作的观众。</p>
+              <div class="card-tags"><span class="tag teal">团队</span><span class="tag">5v5</span><span class="tag">常规轮</span></div>
+              <div class="card-meta"><span class="hot">热度 58</span><span>15:00 开赛</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="empty-state" id="emptyState">没有匹配的内容，换个关键词试试。</div>
+      </section>
+
+      <!-- 3. LATEST UPDATES -->
+      <section class="section" id="dongtai">
+        <div class="sec-head">
+          <h2>最新更新与今日赛程动态</h2>
+          <span class="tag accent">11-08</span>
+        </div>
+        <ul class="update-list">
+          <li><span class="up-time">今天 09:30</span><div class="up-main"><b>英雄联盟全球半决赛第三日</b><span class="sub">首场对阵名单已公布，19:00 开赛，BO5 赛制</span></div></li>
+          <li><span class="up-time">今天 08:50</span><div class="up-main"><b>NBA 常规赛西部焦点战</b><span class="sub">双方首发阵容公布，10:30 开球，预计全美直播</span></div></li>
+          <li><span class="up-time">今天 08:20</span><div class="up-main"><b>无畏契约冠军巡回赛</b><span class="sub">小组赛收官日三场全部确定，17:30 起连续进行</span></div></li>
+          <li><span class="up-time">今天 07:40</span><div class="up-main"><b>围棋快棋赛八强战</b><span class="sub">对阵抽签结果公布，14:00 四盘同时开赛</span></div></li>
+          <li><span class="up-time">今天 07:10</span><div class="up-main"><b>知识问答擂台月赛</b><span class="sub">月赛晋级名单出炉，20:00 进入直播答题环节</span></div></li>
+          <li><span class="up-time">昨天 21:10</span><div class="up-main"><b>48 小时命题写作挑战</b><span class="sub">第二阶段评审结束，今日 12:00 公布最终结果</span></div></li>
+          <li><span class="up-time">昨天 19:35</span><div class="up-main"><b>经典游戏速通竞逐 Any%</b><span class="sub">报名截止，今日 21:30 开始首场计时</span></div></li>
+          <li><span class="up-time">昨天 17:00</span><div class="up-main"><b>团队联赛 5v5 协作对抗</b><span class="sub">常规轮次赛程确认，15:00 进行两场连赛</span></div></li>
+          <li><span class="up-time">11 月 6 日</span><div class="up-main"><b>新人赛开放报名</b><span class="sub">面向首次参赛的选手，11 月 10 日截止</span></div></li>
+          <li><span class="up-time">11 月 5 日</span><div class="up-main"><b>英雄联盟半决赛第二日战报</b><span class="sub">第二场打满五局，胜者晋级总决赛</span></div></li>
+        </ul>
+      </section>
+
+      <!-- 4. CATEGORY ENTRIES -->
+      <section class="section" id="fenlei">
+        <div class="sec-head">
+          <h2>分类入口</h2>
+          <span class="tag">8 个方向</span>
+        </div>
+        <div class="cat-grid">
+          <button class="cat-item" type="button" data-cat="电竞直播" onclick="filterByCategory('电竞直播')"><strong>电竞直播</strong><span>英雄联盟、无畏契约、DOTA2 团队对抗</span></button>
+          <button class="cat-item" type="button" data-cat="体育对抗" onclick="filterByCategory('体育对抗')"><strong>体育对抗</strong><span>NBA 常规赛、足球联赛、格斗赛事</span></button>
+          <button class="cat-item" type="button" data-cat="知识问答" onclick="filterByCategory('知识问答')"><strong>知识问答</strong><span>答题擂台、月赛、抢答与风险题</span></button>
+          <button class="cat-item" type="button" data-cat="创作挑战" onclick="filterByCategory('创作挑战')"><strong>创作挑战</strong><span>命题写作、限时创作、阶段评审</span></button>
+          <button class="cat-item" type="button" data-cat="棋牌对局" onclick="filterByCategory('棋牌对局')"><strong>棋牌对局</strong><span>围棋快棋、象棋联赛、桥牌对抗</span></button>
+          <button class="cat-item" type="button" data-cat="速通竞逐" onclick="filterByCategory('速通竞逐')"><strong>速通竞逐</strong><span>Any%、100%、路线优化与计时</span></button>
+          <button class="cat-item" type="button" data-cat="团队联赛" onclick="filterByCategory('团队联赛')"><strong>团队联赛</strong><span>5v5 协作、指挥与资源分配</span></button>
+          <button class="cat-item" type="button" data-cat="新人赛" onclick="filterByCategory('新人赛')"><strong>新人赛</strong><span>首次参赛、资格赛、开放报名</span></button>
+        </div>
+      </section>
+
+      <!-- 5. DEEP DIVE -->
+      <section class="section deep" id="jiedu">
+        <div class="sec-head">
+          <h2>深度解析：不同赛事类型的观看判断</h2>
+          <span class="tag">阅读约 6 分钟</span>
+        </div>
+        <h3>电竞直播的节奏差异：BO3 与 BO5 怎么选</h3>
+        <p>
+          电竞直播中，BO3 与 BO5 是两种常见赛制。BO3 单场时间通常在 2 到 3 小时之间，适合工作日晚上观看；BO5 则可能拉长到 4 小时以上，更适合周末或半决赛、决赛等关键轮次。判断一场 BO5 是否值得投入时间，可以先看双方近期交手记录和地图池重合度——如果两队历史交锋接近且地图选择接近，比赛往往更胶着。
+        </p>
+        <h3>体育对抗的观看窗口：常规赛与淘汰赛的区别</h3>
+        <p>
+          体育对抗中，常规赛与淘汰赛的观看价值不同。常规赛轮换幅度较大，主力球员出场时间可能受限，适合关注球队整体战术和替补深度；淘汰赛则通常派出最强阵容，单场胜负直接决定晋级，观赏性更集中。以 11 月 8 日的 NBA 常规赛西部焦点战为例，双方排名接近，末节主力出场时间会明显增加，第四节是主要观看窗口。
+        </p>
+        <h3>知识问答与创作挑战：评价标准在哪里</h3>
+        <p>
+          知识问答类赛事主要看答题准确率、抢答速度和风险题策略。月赛阶段通常设置多轮淘汰，风险题的分值选择会直接影响排名。创作挑战则更看重完成度与命题契合度，48 小时命题写作挑战的评审维度包括结构、语言和主题回应，直播过程中可以观察选手的修改节奏。
+        </p>
+        <div class="compare-panel">
+          <div>
+            <h4>知识问答擂台</h4>
+            <p>核心指标：准确率、抢答反应、风险题决策</p>
+            <p>适合：喜欢即时反馈与题目解析的观众</p>
+            <p>时长：单场约 90 分钟</p>
+          </div>
+          <div>
+            <h4>48 小时命题写作挑战</h4>
+            <p>核心指标：命题契合度、结构完成度、语言表现</p>
+            <p>适合：想观察创作流程与评审逻辑的观众</p>
+            <p>时长：跨日直播，阶段评审集中</p>
+          </div>
+        </div>
+        <h3>棋牌与速通的观看门槛</h3>
+        <p>
+          棋牌对局和速通竞逐对观看门槛要求更高。围棋快棋赛的看点在于中盘战斗与时间压力，如果不熟悉规则，可以先看赛后讲解；速通竞逐则需要了解路线设计和关键帧操作，Any% 规则下选手会使用各种捷径，观赛前熟悉一下项目规则会更容易理解成绩差异。
+        </p>
+        <ul>
+          <li><strong>先看赛制：</strong>BO3、BO5、单败淘汰、双败淘汰，赛制决定比赛长度和容错率。</li>
+          <li><strong>再看对阵：</strong>历史交手记录和近期状态比单场排名更有参考价值。</li>
+          <li><strong>最后看时间：</strong>开赛时间是否与自己的空闲时段匹配，避免中途退出。</li>
+        </ul>
+      </section>
+
+      <!-- 6. EXPERIENCE GUIDE -->
+      <section class="section" id="zhinan">
+        <div class="sec-head">
+          <h2>体验指南：内容消费的顺序与判断依据</h2>
+          <span class="tag accent">观看路径</span>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-num"></div><div class="step-body"><h4>先确定今天想看哪一类</h4><p>电竞直播节奏快、场次多，适合晚上连续观看；体育对抗集中在上午和中午；知识问答与创作挑战多在晚间或跨日进行，按自己的空闲时段选择。</p></div></div>
+          <div class="step"><div class="step-num"></div><div class="step-body"><h4>用赛制与对阵判断是否值得投入</h4><p>BO5 和淘汰赛的对抗强度通常高于常规轮次。对阵双方排名接近、历史交手接近的比赛，观看价值更高；差距过大的场次可以选择看集锦。</p></div></div>
+          <div class="step"><div class="step-num"></div><div class="step-body"><h4>比较同类赛事的观看时长</h4><p>同样是一小时，速通竞逐可能只完成一个项目，知识问答擂台则可能已经进行两轮。根据自己的时间预算选择单场时长匹配的赛事。</p></div></div>
+          <div class="step"><div class="step-num"></div><div class="step-body"><h4>关注直播状态与更新节奏</h4><p>开赛前 30 分钟通常会公布首发或对阵名单，赛程变动也会在开赛前更新。如果一场比赛临时调整，可以切换到同时间段的其他场次。</p></div></div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <div class="sec-head">
+          <h2>常见问题</h2>
+          <span class="tag">6 个问答</span>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>英雄联盟全球半决赛一般什么时间开赛？</summary>
+            <p>半决赛阶段通常安排在当地时间晚间 19:00 左右开赛，BO5 赛制，单场可能持续 4 小时以上。建议提前 15 分钟进入直播页面，避免错过 BP 阶段。</p>
+          </details>
+          <details>
+            <summary>无畏契约小组赛和淘汰赛有什么区别？</summary>
+            <p>小组赛采用循环或分组对抗，每队有多场机会，容错率较高；淘汰赛为单败或双败制，输一场即可能出局。小组赛更适合了解队伍风格，淘汰赛对抗强度更高。</p>
+          </details>
+          <details>
+            <summary>第一次看围棋快棋赛，从哪个环节开始看比较好？</summary>
+            <p>可以先从中盘战斗开始看，快棋赛的胜负往往在中盘阶段就出现倾向。如果对规则不熟悉，建议先看赛后讲解或棋谱复盘，再回看直播。</p>
+          </details>
+          <details>
+            <summary>知识问答擂台的评判标准通常是什么？</summary>
+            <p>主要看答题准确率、抢答速度和风险题决策。月赛阶段通常有多轮淘汰，风险题的分值选择会直接影响排名，准确率高的选手通常走得更远。</p>
+          </details>
+          <details>
+            <summary>速通竞逐的 Any% 和 100% 规则有什么不同？</summary>
+            <p>Any% 只要求以最快时间完成游戏，允许使用各种捷径和漏洞；100% 则要求完成全部指定内容，路线更长、限制更多。两种规则的计时方式和成绩不可直接比较。</p>
+          </details>
+          <details>
+            <summary>48 小时命题写作挑战的评审看什么？</summary>
+            <p>评审通常关注命题契合度、结构完成度和语言表现。限时条件下，完成度往往比精雕细琢更重要，阶段评审会给出修改建议，最终结果在挑战结束后公布。</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. COMMENTS -->
+      <section class="section" id="pinlun">
+        <div class="sec-head">
+          <h2>用户评论</h2>
+          <span class="tag">16 条</span>
+        </div>
+        <div class="comment-grid">
+          <div class="comment"><div class="comment-head"><span class="comment-name">北岸观赛</span><span class="comment-time">今天 10:12</span></div><p>半决赛第三日这场 BP 很有意思，下路对线应该会决定前期节奏。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">蓝色耳机</span><span class="comment-time">今天 09:58</span></div><p>NBA 这场西部焦点战我打算看末节，前面轮换阶段节奏偏慢。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">棋盘边</span><span class="comment-time">今天 09:40</span></div><p>围棋快棋赛 30 秒一步太考验反应了，中盘战斗比官子好看。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">答题小周</span><span class="comment-time">今天 09:22</span></div><p>知识问答月赛的风险题环节最有意思，领先选手敢不敢押高分很关键。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">键盘速通</span><span class="comment-time">今天 08:55</span></div><p>Any% 规则下的路线优化很吃帧数，建议先看一遍项目说明再看直播。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">写作夜猫</span><span class="comment-time">今天 08:30</span></div><p>48 小时命题写作挑战的直播适合当背景音，听选手讨论结构挺有收获。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">无畏前锋</span><span class="comment-time">昨天 22:15</span></div><p>小组赛收官日三场连看有点累，但出线关键战确实值得。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">五棵松球迷</span><span class="comment-time">昨天 21:40</span></div><p>常规赛轮换正常，替补得分能拉开差距的话末节会更好看。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">桥牌老张</span><span class="comment-time">昨天 20:05</span></div><p>棋牌类赛事直播比较少，围棋快棋赛算是节奏比较友好的一种。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">团队指挥</span><span class="comment-time">昨天 18:32</span></div><p>5v5 协作对抗看的就是指挥和资源分配，个人操作反而是其次。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">新人阿凯</span><span class="comment-time">昨天 17:48</span></div><p>新人赛报名开放了，第一次参赛有点紧张，先看看赛制再说。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">集锦党</span><span class="comment-time">11 月 6 日</span></div><p>BO5 太长了，我一般只看决胜局，前面两局看集锦补。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">夜航星</span><span class="comment-time">11 月 6 日</span></div><p>知识问答的题目覆盖挺杂，历史题和科学题难度差得有点多。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">速通计时员</span><span class="comment-time">11 月 5 日</span></div><p>100% 规则比 Any% 更考验耐心，路线长但失误容忍度低。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">写稿的人</span><span class="comment-time">11 月 4 日</span></div><p>48 小时命题写作的评审标准比较清晰，命题契合度权重最高。</p></div>
+          <div class="comment"><div class="comment-head"><span class="comment-name">半决赛观众</span><span class="comment-time">11 月 3 日</span></div><p>半决赛第二日打满五局，第三日应该也会很胶着。</p></div>
+        </div>
+      </section>
+
+      <!-- 9. NEWS -->
+      <section class="section" id="zixun">
+        <div class="sec-head">
+          <h2>相关资讯</h2>
+          <span class="tag">6 条</span>
+        </div>
+        <div class="news-list">
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-lol-semi/600/400" width="600" height="400" loading="lazy" alt="英雄联盟全球半决赛现场观众席">
+            <div class="news-body">
+              <h3>英雄联盟全球半决赛第三日对阵公布</h3>
+              <time>2026-11-08</time>
+              <p>两场 BO5 对阵名单确定，首场 19:00 开赛，第二场预计 23:30 后进行。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-valorant/600/400" width="600" height="400" loading="lazy" alt="无畏契约冠军巡回赛比赛现场">
+            <div class="news-body">
+              <h3>无畏契约冠军巡回赛小组赛收官战安排</h3>
+              <time>2026-11-08</time>
+              <p>三场小组赛集中在 17:30 后，A 组出线名额将在两场比赛中产生。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-nba/600/400" width="600" height="400" loading="lazy" alt="NBA常规赛西部焦点战球员热身">
+            <div class="news-body">
+              <h3>NBA 西部焦点战首发名单公布</h3>
+              <time>2026-11-08</time>
+              <p>双方主力全部出战，10:30 开球，本场为两队本赛季第三次交手。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-weiqi/600/400" width="600" height="400" loading="lazy" alt="围棋快棋赛八强战对阵棋盘">
+            <div class="news-body">
+              <h3>围棋快棋赛八强对阵抽签结果出炉</h3>
+              <time>2026-11-07</time>
+              <p>四盘对局将在 14:00 同时进行，采用 30 秒一步快棋规则。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-quiz/600/400" width="600" height="400" loading="lazy" alt="知识问答擂台月赛答题现场">
+            <div class="news-body">
+              <h3>知识问答擂台月赛晋级名单公布</h3>
+              <time>2026-11-07</time>
+              <p>8 名选手进入月赛直播环节，20:00 开始抢答与风险题轮次。</p>
+            </div>
+          </article>
+          <article class="news-item">
+            <img class="news-thumb" src="https://picsum.photos/seed/news-writing/600/400" width="600" height="400" loading="lazy" alt="48小时命题写作挑战评审现场">
+            <div class="news-body">
+              <h3>48 小时命题写作挑战进入最终评审</h3>
+              <time>2026-11-07</time>
+              <p>第二阶段评审结束，最终结果将于今日 12:00 直播公布。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10. RELATED RECOMMENDATIONS -->
+      <section class="section" id="tuijian">
+        <div class="sec-head">
+          <h2>相关推荐</h2>
+          <span class="tag">延伸方向</span>
+        </div>
+        <div class="tag-index">
+          <a href="#dianjing">英雄联盟半决赛赛程</a>
+          <a href="#dianjing">无畏契约地图池分析</a>
+          <a href="#tiyu">NBA 常规赛西部排名</a>
+          <a href="#zhishi">知识问答风险题策略</a>
+          <a href="#chuangzuo">命题写作评审维度</a>
+          <a href="#qipai">围棋快棋规则说明</a>
+          <a href="#sudi">Any% 路线优化</a>
+          <a href="#tuandui">5v5 团队指挥</a>
+        </div>
+      </section>
+
+      <!-- 11. SUPPLEMENT: RANKING -->
+      <section class="section" id="bangdan">
+        <div class="sec-head">
+          <h2>今日热度榜单</h2>
+          <span class="tag accent">11-08 更新</span>
+        </div>
+        <ul class="rank-list">
+          <li><span class="rank-num">1</span><span><b>英雄联盟全球半决赛第三日</b> · 19:00 开赛 · 热度 98</span></li>
+          <li><span class="rank-num">2</span><span><b>无畏契约冠军巡回赛小组赛</b> · 17:30 开赛 · 热度 91</span></li>
+          <li><span class="rank-num">3</span><span><b>NBA 常规赛西部焦点战</b> · 10:30 开赛 · 热度 89</span></li>
+          <li><span class="rank-num">4</span><span><b>围棋快棋赛八强战</b> · 14:00 开赛 · 热度 72</span></li>
+          <li><span class="rank-num">5</span><span><b>知识问答擂台月赛</b> · 20:00 开赛 · 热度 68</span></li>
+        </ul>
+        <p class="side-note">榜单按当日开赛前关注度统计，与比赛结果无关。</p>
+      </section>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="side-col" aria-label="辅助栏">
+      <div class="side-card">
+        <h2>今日开赛时间线</h2>
+        <ul class="rank-list">
+          <li><span class="rank-num">10:30</span><span>NBA 常规赛西部焦点战</span></li>
+          <li><span class="rank-num">12:00</span><span>48 小时命题写作挑战结果公布</span></li>
+          <li><span class="rank-num">14:00</span><span>围棋快棋赛八强战</span></li>
+          <li><span class="rank-num">15:00</span><span>团队联赛 5v5 协作对抗</span></li>
+          <li><span class="rank-num">17:30</span><span>无畏契约冠军巡回赛小组赛</span></li>
+          <li><span class="rank-num">19:00</span><span>英雄联盟全球半决赛第三日</span></li>
+          <li><span class="rank-num">20:00</span><span>知识问答擂台月赛</span></li>
+          <li><span class="rank-num">21:30</span><span>经典游戏速通竞逐 Any%</span></li>
+        </ul>
+        <p class="side-note">时间为北京时间，开赛前 30 分钟更新对阵信息。</p>
+      </div>
+      <div class="side-card">
+        <h2>频道快捷入口</h2>
+        <div class="tag-index">
+          <a href="#dianjing">电竞直播</a>
+          <a href="#tiyu">体育对抗</a>
+          <a href="#zhishi">知识问答</a>
+          <a href="#chuangzuo">创作挑战</a>
+          <a href="#qipai">棋牌对局</a>
+          <a href="#sudi">速通竞逐</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer" id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 18L12 4l8 14H4z" fill="#F6B73C"/>
+              <circle cx="12" cy="18" r="2.6" fill="#F6B73C"/>
+            </svg>
+          </span>
+          每日大赛在线观看
+        </div>
+        <p style="margin:0;color:#8fa0b8;font-size:12.5px;line-height:1.7;max-width:280px;">
+          聚合当日电竞赛事、体育对抗、知识问答与创作挑战的直播入口与赛程动态，按类型与时间组织，方便快速判断先看哪一场。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h3>赛事类型</h3>
+        <ul>
+          <li><a href="#dianjing">电竞直播</a></li>
+          <li><a href="#tiyu">体育对抗</a></li>
+          <li><a href="#zhishi">知识问答</a></li>
+          <li><a href="#chuangzuo">创作挑战</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>赛程与解析</h3>
+        <ul>
+          <li><a href="#dongtai">今日赛程动态</a></li>
+          <li><a href="#jiedu">深度解析</a></li>
+          <li><a href="#zhinan">体验指南</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>社区与榜单</h3>
+        <ul>
+          <li><a href="#pinlun">用户评论</a></li>
+          <li><a href="#bangdan">今日热度榜</a></li>
+          <li><a href="#zixun">相关资讯</a></li>
+          <li><a href="#tuijian">相关推荐</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 每日大赛在线观看 · 内容聚合示例</p>
+      <p class="sample-note">部分内容为示例数据，仅用于展示页面结构</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    var filterNote = document.getElementById('filterNote');
+    var contentStart = document.getElementById('contentStart');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+    var emptyState = document.getElementById('emptyState');
+    var activeCategory = '';
+
+    function normalize(s) {
+      return (s || '').toLowerCase().replace(/\s+/g, '');
+    }
+
+    function applyFilters() {
+      var q = normalize(searchInput ? searchInput.value : '');
+      var visibleCount = 0;
+
+      cards.forEach(function (card) {
+        var text = normalize(card.textContent);
+        var catMatch = !activeCategory || text.indexOf(normalize(activeCategory)) !== -1;
+        var searchMatch = !q || text.indexOf(q) !== -1;
+        var show = catMatch && searchMatch;
+        card.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle('show', visibleCount === 0 && (!!q || !!activeCategory));
+      }
+
+      if (filterNote) {
+        var active = !!q || !!activeCategory;
+        filterNote.classList.toggle('show', active);
+        filterNote.textContent = active ? '已筛选' : '';
+      }
+    }
+
+    window.filterByCategory = function (cat) {
+      if (activeCategory === cat) {
+        activeCategory = '';
+      } else {
+        activeCategory = cat;
+      }
+      if (searchInput) searchInput.value = '';
+      applyFilters();
+      if (contentStart) {
+        contentStart.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function () {
+        activeCategory = '';
+        applyFilters();
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        activeCategory = '';
+        applyFilters();
+      });
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          activeCategory = '';
+          applyFilters();
+        }
+      });
+    }
+
+    // anchor smooth offset handled by CSS scroll-margin-top
+  })();
+</script>
+</body>
+  </html>
