@@ -1,0 +1,1235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖心vlog - 生活影像内容聚合</title>
+<meta name="description" content="糖心vlog汇聚城市漫游、深夜食堂、手工手作、周末出逃等生活影像vlog，提供条目看点、更新动态、类型对比与观看顺序参考，适合喜欢真实日常记录的观众。">
+<meta name="keywords" content="生活vlog,城市漫游,深夜食堂,手作记录,周末出逃">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f4685a'/%3E%3Cpath d='M20 34c0-7 6-13 13-13 5 0 9 2 12 6l-6 4c-1-2-3-3-6-3-4 0-7 3-7 7s3 7 7 7c3 0 5-1 6-3l6 4c-3 4-7 6-12 6-8 0-13-6-13-15z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --coral:#f4685a;
+  --coral-deep:#d94f42;
+  --coral-soft:#fde8e4;
+  --plum:#3d2b3a;
+  --plum-light:#5a4256;
+  --cream:#fdf9f4;
+  --cream-2:#f7f0e8;
+  --ink:#2c2229;
+  --ink-2:#5f5460;
+  --ink-3:#8b7f8a;
+  --line:#e9ddd4;
+  --line-2:#f0e6dd;
+  --gold:#e0a458;
+  --green:#5f9e7a;
+  --radius:14px;
+  --radius-sm:9px;
+  --shadow:0 6px 22px rgba(61,43,58,.08);
+  --shadow-hover:0 10px 30px rgba(61,43,58,.14);
+  --header-h:120px;
+  --serif:"Noto Serif SC","Songti SC",Georgia,serif;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+h1,h2,h3,h4{line-height:1.35;font-weight:700}
+
+/* ============ 吸顶公告条 + 页头 ============ */
+.sticky-wrap{position:sticky;top:0;z-index:100}
+.notice-bar{
+  background:var(--plum);
+  color:#f6ead9;
+  font-size:13.5px;
+  letter-spacing:.2px;
+  padding:8px 24px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  text-align:center;
+}
+.notice-bar .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);flex:none;box-shadow:0 0 0 3px rgba(244,104,90,.3)}
+.notice-bar strong{color:#fff;font-weight:600}
+.notice-bar .sep{opacity:.4}
+
+.site-header{
+  background:rgba(253,249,244,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 14px rgba(61,43,58,.05);
+}
+.header-inner{
+  max-width:1360px;margin:0 auto;
+  padding:12px 24px;
+  display:flex;align-items:center;gap:28px;
+}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-mark{width:42px;height:42px;flex:none;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(244,104,90,.3)}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text b{font-size:20px;font-weight:800;letter-spacing:.5px;color:var(--plum);font-family:var(--serif)}
+.brand-text span{font-size:11px;color:var(--ink-3);letter-spacing:2px}
+.main-nav{display:flex;flex-wrap:wrap;gap:4px 2px;flex:1}
+.main-nav a{
+  font-size:14.5px;color:var(--ink-2);padding:6px 12px;border-radius:8px;
+  transition:.18s;white-space:nowrap;
+}
+.main-nav a:hover,.main-nav a:focus-visible{background:var(--coral-soft);color:var(--coral-deep);outline:none}
+.header-actions{display:flex;align-items:center;gap:10px;flex:none}
+.search-box{position:relative;display:flex;align-items:center}
+.search-box input{
+  width:170px;padding:8px 34px 8px 12px;font-size:13.5px;
+  border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);
+  transition:.2s;outline:none;
+}
+.search-box input:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(244,104,90,.14);width:200px}
+.search-box .s-icon{position:absolute;right:11px;pointer-events:none;color:var(--ink-3);display:flex}
+.btn-ghost{
+  font-size:13.5px;padding:8px 16px;border-radius:20px;
+  background:var(--coral);color:#fff;font-weight:600;transition:.2s;white-space:nowrap;
+}
+.btn-ghost:hover{background:var(--coral-deep)}
+
+/* ============ 首屏 ============ */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(244,104,90,.16), transparent 46%),
+    radial-gradient(circle at 12% 88%, rgba(224,164,88,.14), transparent 44%),
+    linear-gradient(160deg,#fdf9f4 0%, #fbeee8 100%);
+  border-bottom:1px solid var(--line-2);
+}
+.hero-inner{
+  max-width:1360px;margin:0 auto;padding:52px 24px 56px;
+  display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:1.5px;color:var(--coral-deep);
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:5px 14px;margin-bottom:18px;font-weight:600;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(38px,5.2vw,62px);
+  line-height:1.1;letter-spacing:1px;color:var(--plum);
+  margin-bottom:18px;
+}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero-desc{font-size:16px;color:var(--ink-2);max-width:540px;margin-bottom:26px;line-height:1.85}
+.hero-desc b{color:var(--plum);font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:26px;background:var(--coral);color:#fff;
+  font-size:15px;font-weight:700;transition:.22s;box-shadow:0 8px 22px rgba(244,104,90,.3);
+}
+.btn-primary:hover{background:var(--coral-deep);transform:translateY(-1px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:26px;background:#fff;color:var(--plum);
+  border:1.5px solid var(--line);font-size:15px;font-weight:600;transition:.22s;
+}
+.btn-outline:hover{border-color:var(--coral);color:var(--coral-deep)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:26px}
+.hero-stats div{display:flex;flex-direction:column}
+.hero-stats b{font-size:22px;font-family:var(--serif);color:var(--coral-deep);line-height:1.2}
+.hero-stats span{font-size:12.5px;color:var(--ink-3);letter-spacing:.5px}
+
+/* 首屏视觉构图（SVG） */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;min-height:340px}
+.hero-visual svg{width:100%;max-width:440px;height:auto;filter:drop-shadow(0 18px 36px rgba(61,43,58,.13))}
+.float-tag{
+  position:absolute;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:8px 14px;font-size:12.5px;font-weight:600;color:var(--plum);
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:7px;
+}
+.float-tag i{width:7px;height:7px;border-radius:50%;background:var(--coral);flex:none}
+.ft-1{top:6%;left:-2%;animation:floaty 5s ease-in-out infinite}
+.ft-2{bottom:10%;right:-3%;animation:floaty 6s ease-in-out infinite .8s}
+.ft-3{top:44%;right:2%;animation:floaty 5.5s ease-in-out infinite .4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ============ 主布局：三栏门户 ============ */
+.layout{
+  max-width:1360px;margin:0 auto;padding:40px 24px 20px;
+  display:grid;grid-template-columns:190px minmax(0,1fr) 280px;gap:30px;
+  align-items:start;
+}
+/* 左频道索引 */
+.channel-rail{position:sticky;top:calc(var(--header-h) + 16px);align-self:start}
+.rail-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;box-shadow:var(--shadow);margin-bottom:16px}
+.rail-title{font-size:12px;letter-spacing:2px;color:var(--ink-3);font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.rail-title::before{content:"";width:4px;height:13px;border-radius:2px;background:var(--coral)}
+.rail-nav li a{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  font-size:14px;padding:7px 9px;border-radius:8px;color:var(--ink-2);transition:.16s;
+}
+.rail-nav li a:hover,.rail-nav li a:focus-visible{background:var(--coral-soft);color:var(--coral-deep);outline:none}
+.rail-nav li a .cnt{font-size:11px;color:var(--ink-3);background:var(--cream-2);border-radius:8px;padding:1px 7px;font-weight:600}
+.rail-nav li a:hover .cnt{background:#fff;color:var(--coral-deep)}
+.rail-sub{font-size:12.5px;color:var(--ink-3);line-height:1.7;padding:2px 4px 0}
+.rail-sub b{color:var(--coral-deep)}
+
+/* 中主内容 */
+.main-col{min-width:0}
+.section-block{margin-bottom:46px;scroll-margin-top:calc(var(--header-h) + 20px)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.section-head h2{
+  font-family:var(--serif);font-size:24px;color:var(--plum);letter-spacing:.5px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-head h2::before{content:"";width:5px;height:22px;border-radius:3px;background:var(--coral)}
+.section-head .more{font-size:13px;color:var(--coral-deep);font-weight:600}
+.section-lead{font-size:13.5px;color:var(--ink-3);margin-bottom:20px;padding-left:15px}
+
+/* 领域概览 */
+.overview{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow)}
+.overview p{font-size:15px;color:var(--ink-2);margin-bottom:13px;line-height:1.9}
+.overview p:last-child{margin-bottom:0}
+.overview p b{color:var(--plum);font-weight:600}
+.overview .kw{color:var(--coral-deep);font-weight:600}
+
+/* 精选卡片 */
+.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.v-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  display:flex;flex-direction:column;transition:.24s;box-shadow:0 2px 8px rgba(61,43,58,.04);
+}
+.v-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:#f3cfc8}
+.v-card .thumb{position:relative;aspect-ratio:4/3;background:var(--cream-2);overflow:hidden}
+.v-card .thumb img{width:100%;height:100%;transition:.4s}
+.v-card:hover .thumb img{transform:scale(1.05)}
+.v-card .badge{
+  position:absolute;top:10px;left:10px;background:rgba(61,43,58,.85);color:#fff;
+  font-size:11px;padding:3px 10px;border-radius:12px;letter-spacing:.4px;font-weight:600;backdrop-filter:blur(3px);
+}
+.v-card .heat{
+  position:absolute;bottom:10px;right:10px;background:rgba(255,255,255,.92);
+  color:var(--coral-deep);font-size:11px;padding:2px 9px;border-radius:10px;font-weight:700;
+}
+.v-card .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+.v-card h3{font-size:16px;color:var(--plum);margin-bottom:7px;line-height:1.4}
+.v-card p{font-size:13.5px;color:var(--ink-2);line-height:1.72;flex:1;margin-bottom:11px}
+.v-card .tags{display:flex;flex-wrap:wrap;gap:6px}
+.v-card .tags span{font-size:11.5px;color:var(--plum-light);background:var(--cream-2);border-radius:10px;padding:2px 9px}
+
+/* 最新更新列表 */
+.update-list{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.update-item{
+  display:flex;gap:15px;padding:14px 20px;border-bottom:1px solid var(--line-2);align-items:center;transition:.16s;
+}
+.update-item:last-child{border-bottom:none}
+.update-item:hover{background:var(--cream)}
+.update-time{flex:none;width:62px;font-size:12px;color:var(--ink-3);font-weight:600;font-variant-numeric:tabular-nums}
+.update-thumb{flex:none;width:54px;height:54px;border-radius:9px;overflow:hidden;background:var(--cream-2)}
+.update-thumb img{width:100%;height:100%}
+.update-main{flex:1;min-width:0}
+.update-main h3{font-size:14.5px;color:var(--plum);margin-bottom:2px;font-weight:600}
+.update-main p{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.update-tag{flex:none;font-size:11px;font-weight:600;padding:3px 10px;border-radius:11px}
+.tag-new{background:var(--coral-soft);color:var(--coral-deep)}
+.tag-hot{background:#fff2e0;color:#c07a24}
+.tag-up{background:#e6f3ec;color:#3d7d5c}
+
+/* 分类入口 */
+.cat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cat-chip{
+  display:flex;flex-direction:column;gap:3px;padding:14px 14px;border-radius:var(--radius-sm);
+  background:#fff;border:1px solid var(--line);transition:.2s;text-align:left;
+}
+.cat-chip:hover,.cat-chip:focus-visible{border-color:var(--coral);background:var(--coral-soft);outline:none;transform:translateY(-2px)}
+.cat-chip b{font-size:14px;color:var(--plum)}
+.cat-chip span{font-size:11.5px;color:var(--ink-3)}
+.cat-chip:hover b{color:var(--coral-deep)}
+
+/* 深度解析 */
+.deep{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;box-shadow:var(--shadow)}
+.deep h3{font-family:var(--serif);font-size:19px;color:var(--plum);margin:24px 0 10px;padding-left:13px;border-left:4px solid var(--coral);line-height:1.4}
+.deep h3:first-child{margin-top:0}
+.deep p{font-size:14.5px;color:var(--ink-2);line-height:1.92;margin-bottom:12px}
+.deep p b{color:var(--plum);font-weight:600}
+.deep ul{margin:6px 0 14px}
+.deep ul li{position:relative;padding-left:22px;font-size:14px;color:var(--ink-2);line-height:1.85;margin-bottom:7px}
+.deep ul li::before{content:"";position:absolute;left:6px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--coral)}
+.deep ul li b{color:var(--plum)}
+.deep .quote{
+  background:var(--cream);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+  padding:14px 18px;font-size:13.5px;color:var(--plum-light);margin:16px 0;line-height:1.8;
+}
+
+/* 体验路径 步骤 */
+.steps{counter-reset:step;display:grid;gap:14px}
+.step{
+  display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;box-shadow:0 2px 8px rgba(61,43,58,.04);transition:.18s;
+}
+.step:hover{border-color:#f3cfc8;box-shadow:var(--shadow)}
+.step::before{
+  counter-increment:step;content:counter(step);
+  flex:none;width:34px;height:34px;border-radius:50%;
+  background:var(--coral-soft);color:var(--coral-deep);
+  font-family:var(--serif);font-size:16px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-body h3{font-size:15px;color:var(--plum);margin-bottom:5px}
+.step-body p{font-size:13.5px;color:var(--ink-2);line-height:1.78}
+
+/* FAQ */
+.faq-list{display:grid;gap:10px}
+.faq-list details{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;transition:.18s}
+.faq-list details[open]{border-color:#f3cfc8;box-shadow:0 4px 16px rgba(61,43,58,.07)}
+.faq-list summary{
+  list-style:none;padding:15px 20px;font-size:14.5px;font-weight:600;color:var(--plum);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-size:20px;color:var(--coral);font-weight:400;transition:.22s;flex:none}
+.faq-list details[open] summary::after{transform:rotate(45deg)}
+.faq-list summary:focus-visible{outline:2px solid var(--coral);outline-offset:-2px}
+.faq-list .faq-a{padding:0 20px 17px;font-size:13.5px;color:var(--ink-2);line-height:1.85}
+.faq-list .faq-a b{color:var(--plum)}
+
+/* 评论 */
+.comment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cmt{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px;transition:.18s}
+.cmt:hover{border-color:#f3cfc8}
+.cmt-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.cmt-avatar{width:30px;height:30px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+.cmt-name{font-size:13px;font-weight:600;color:var(--plum)}
+.cmt-meta{font-size:11px;color:var(--ink-3);margin-left:auto}
+.cmt p{font-size:13px;color:var(--ink-2);line-height:1.72}
+.cmt p b{color:var(--coral-deep)}
+
+/* 资讯 */
+.news-list{display:grid;gap:14px}
+.news-item{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;transition:.18s}
+.news-item:hover{border-color:#f3cfc8;box-shadow:var(--shadow)}
+.news-thumb{flex:none;width:120px;height:86px;border-radius:10px;overflow:hidden;background:var(--cream-2)}
+.news-thumb img{width:100%;height:100%}
+.news-body{flex:1;min-width:0}
+.news-body h3{font-size:15px;color:var(--plum);margin-bottom:5px;line-height:1.45}
+.news-body p{font-size:13px;color:var(--ink-2);line-height:1.7;margin-bottom:6px}
+.news-date{font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+.news-date::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+/* 相关推荐 */
+.rel-tags{display:flex;flex-wrap:wrap;gap:9px}
+.rel-tags a{
+  font-size:13.5px;padding:7px 16px;border-radius:20px;
+  background:#fff;border:1px solid var(--line);color:var(--ink-2);transition:.18s;
+}
+.rel-tags a:hover,.rel-tags a:focus-visible{background:var(--coral);border-color:var(--coral);color:#fff;outline:none}
+
+/* 榜单 */
+.rank-list{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.rank-item{display:flex;gap:14px;padding:13px 20px;align-items:center;border-bottom:1px solid var(--line-2);transition:.16s}
+.rank-item:last-child{border-bottom:none}
+.rank-item:hover{background:var(--cream)}
+.rank-num{flex:none;width:26px;font-family:var(--serif);font-size:17px;font-weight:800;color:var(--ink-3);text-align:center}
+.rank-item:nth-child(1) .rank-num{color:#e0a458}
+.rank-item:nth-child(2) .rank-num{color:#b8a7b0}
+.rank-item:nth-child(3) .rank-num{color:#cd9a6e}
+.rank-main{flex:1;min-width:0}
+.rank-main h3{font-size:14px;color:var(--plum);margin-bottom:2px;font-weight:600}
+.rank-main p{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-score{flex:none;font-size:13px;font-weight:700;color:var(--coral-deep);font-variant-numeric:tabular-nums}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:20px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2.5px solid var(--coral)}
+.tl-date{font-size:12px;color:var(--coral-deep);font-weight:700;letter-spacing:.3px;margin-bottom:3px}
+.tl-item h3{font-size:14px;color:var(--plum);margin-bottom:3px}
+.tl-item p{font-size:12.5px;color:var(--ink-3);line-height:1.7}
+
+/* 右辅助栏 */
+.side-col{position:sticky;top:calc(var(--header-h) + 16px);align-self:start;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - var(--header-h) - 32px);overflow-y:auto;scrollbar-width:thin}
+.side-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px;box-shadow:0 2px 10px rgba(61,43,58,.04)}
+.side-head{font-size:13.5px;font-weight:700;color:var(--plum);margin-bottom:12px;display:flex;align-items:center;gap:7px;letter-spacing:.3px}
+.side-head::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--coral)}
+.side-hot li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line-2);align-items:flex-start}
+.side-hot li:last-child{border-bottom:none;padding-bottom:0}
+.hot-rank{flex:none;width:20px;height:20px;border-radius:6px;background:var(--cream-2);color:var(--ink-3);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.side-hot li:nth-child(1) .hot-rank{background:var(--coral);color:#fff}
+.side-hot li:nth-child(2) .hot-rank{background:#f08a7e;color:#fff}
+.side-hot li:nth-child(3) .hot-rank{background:#f5b2a9;color:#fff}
+.side-hot .hot-info{flex:1;min-width:0}
+.side-hot h4{font-size:13px;color:var(--plum);font-weight:600;line-height:1.45;margin-bottom:1px}
+.side-hot span{font-size:11px;color:var(--ink-3)}
+.side-tags{display:flex;flex-wrap:wrap;gap:7px}
+.side-tags a{font-size:12px;padding:4px 11px;border-radius:13px;background:var(--cream-2);color:var(--ink-2);transition:.16s}
+.side-tags a:hover{background:var(--coral);color:#fff}
+.side-note{font-size:12.5px;color:var(--ink-3);line-height:1.75}
+.side-note b{color:var(--coral-deep)}
+
+/* 搜索无结果 */
+.no-result{display:none;background:#fff;border:1px dashed var(--line);border-radius:var(--radius);padding:24px;text-align:center;color:var(--ink-3);font-size:14px;margin-bottom:18px}
+.no-result.show{display:block}
+
+/* 页尾 */
+.site-footer{background:var(--plum);color:#cdbfc9;margin-top:36px;padding:46px 24px 24px}
+.footer-inner{max-width:1360px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.footer-brand .brand-mark{width:38px;height:38px;border-radius:11px}
+.footer-brand b{font-family:var(--serif);font-size:19px;color:#fff;letter-spacing:.5px}
+.footer-desc{font-size:13px;line-height:1.85;color:#b3a4b0;max-width:330px}
+.footer-col h4{font-size:13.5px;color:#fff;margin-bottom:13px;letter-spacing:.5px}
+.footer-col li{margin-bottom:8px}
+.footer-col a{font-size:13px;color:#b3a4b0;transition:.16s}
+.footer-col a:hover{color:var(--coral)}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:20px;font-size:12px;color:#8f7f8b}
+.footer-bottom .demo-note{font-size:11.5px;color:#7d6d79}
+
+/* 响应式 */
+@media (max-width:1180px){
+  .layout{grid-template-columns:170px minmax(0,1fr);}
+  .side-col{position:static;grid-column:1 / -1;max-height:none;overflow:visible;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  .side-col .side-card{margin:0}
+}
+@media (max-width:1024px){
+  .header-inner{flex-wrap:wrap;gap:10px 20px}
+  .main-nav{order:3;flex-basis:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  .main-nav a{white-space:nowrap}
+  .hero-inner{grid-template-columns:1fr;gap:30px;padding:38px 24px 44px}
+  .hero-visual{min-height:280px;order:-1}
+  .hero-visual svg{max-width:340px}
+  .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:24px}
+  .channel-rail{position:static;order:2}
+  .rail-card{margin-bottom:0}
+  .rail-nav{display:flex;flex-wrap:wrap;gap:6px}
+  .rail-nav li{flex:0 0 auto}
+  .rail-nav li a{padding:5px 12px;background:var(--cream-2);border-radius:16px;font-size:13px}
+  .rail-nav li a .cnt{display:none}
+  .main-col{order:1}
+  .side-col{order:3;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .comment-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1 / -1}
+}
+@media (max-width:740px){
+  body{font-size:15px}
+  .header-inner{padding:10px 16px;gap:10px}
+  .search-box input{width:130px}
+  .search-box input:focus{width:150px}
+  .btn-ghost{padding:7px 13px;font-size:12.5px}
+  .notice-bar{font-size:12px;padding:7px 16px;flex-wrap:wrap;gap:4px}
+  .hero-inner{padding:30px 16px 36px}
+  .hero h1{font-size:34px}
+  .hero-desc{font-size:14.5px}
+  .hero-stats{gap:20px}
+  .layout{padding:24px 16px 16px}
+  .card-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .update-item{padding:12px 14px;gap:10px}
+  .update-thumb{width:44px;height:44px}
+  .update-time{width:52px;font-size:11px}
+  .deep{padding:22px 18px}
+  .overview{padding:20px 18px}
+  .news-item{flex-direction:column;gap:10px}
+  .news-thumb{width:100%;height:150px}
+  .side-col{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:22px}
+  .footer-bottom{flex-direction:column}
+  .section-head h2{font-size:21px}
+  .float-tag{font-size:11px;padding:6px 10px}
+  .ft-1{left:0}.ft-2{right:0}.ft-3{display:none}
+}
+@media (max-width:400px){
+  .cat-grid{grid-template-columns:1fr}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-outline{justify-content:center}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ============ 吸顶公告条 + 页头 ============ -->
+<div class="sticky-wrap">
+  <div class="notice-bar" role="status">
+    <span class="dot"></span>
+    <strong>本周新增 14 条生活影像</strong>
+    <span class="sep">·</span>
+    <span>「深夜食堂」系列更新第 9 集</span>
+    <span class="sep">·</span>
+    <span>11 月 8 日 20:00 城市漫游直播预告</span>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/#top" aria-label="糖心vlog 首页">
+        <span class="brand-mark">
+          <svg viewBox="0 0 64 64" width="42" height="42" role="img" aria-label="糖心vlog 标志">
+            <rect width="64" height="64" rx="14" fill="#f4685a"/>
+            <path d="M20 34c0-7 6-13 13-13 5 0 9 2 12 6l-6 4c-1-2-3-3-6-3-4 0-7 3-7 7s3 7 7 7c3 0 5-1 6-3l6 4c-3 4-7 6-12 6-8 0-13-6-13-15z" fill="#fff"/>
+            <circle cx="47" cy="17" r="3" fill="#ffd9a0"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <b>糖心vlog</b>
+          <span>LIFE IN FRAMES</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#overview">领域概览</a>
+        <a href="/#featured">精选影像</a>
+        <a href="/#updates">更新动态</a>
+        <a href="/#categories">类型分类</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">观看路径</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">观众评论</a>
+        <a href="/#news">相关资讯</a>
+        <a href="/#rank">热门榜单</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="search" id="siteSearch" placeholder="搜索影像条目…" aria-label="搜索影像条目">
+          <span class="s-icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </span>
+        </div>
+        <button class="btn-ghost" type="button" id="randomBtn">随机一条</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- ============ 主题首屏 ============ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">◆ 生活影像内容聚合</span>
+      <h1>糖心vlog</h1>
+      <p class="hero-desc">
+        汇聚<b>城市漫游、深夜食堂、手作记录、周末出逃</b>四类真实日常影像。这里收录每一集的看点、时长与拍摄地，也整理同类型条目之间的差异，帮你判断<b>哪一条值得先看、哪一集适合下饭</b>。
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="/#featured">浏览精选影像
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn-outline" href="/#updates">查看今日更新</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>14</b><span>本周新增条目</span></div>
+        <div><b>9</b><span>深层类型分类</span></div>
+        <div><b>2026.11.08</b><span>最近更新日期</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 400" role="img" aria-label="糖心vlog 生活影像视觉构图">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fde8e4"/><stop offset="1" stop-color="#f8c8bf"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#3d2b3a"/><stop offset="1" stop-color="#5a4256"/>
+          </linearGradient>
+        </defs>
+        <rect x="40" y="30" width="300" height="330" rx="26" fill="url(#g1)"/>
+        <rect x="70" y="62" width="240" height="150" rx="14" fill="#fff" opacity=".92"/>
+        <rect x="86" y="78" width="120" height="10" rx="5" fill="#3d2b3a" opacity=".85"/>
+        <rect x="86" y="96" width="180" height="7" rx="3.5" fill="#8b7f8a" opacity=".5"/>
+        <rect x="86" y="110" width="150" height="7" rx="3.5" fill="#8b7f8a" opacity=".4"/>
+        <circle cx="270" cy="150" r="26" fill="#f4685a"/>
+        <path d="M262 150l6 6 12-12" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="70" y="228" width="112" height="104" rx="12" fill="#fff" opacity=".92"/>
+        <rect x="196" y="228" width="114" height="104" rx="12" fill="url(#g2)"/>
+        <circle cx="126" cy="266" r="16" fill="#e0a458"/>
+        <rect x="98" y="292" width="56" height="7" rx="3.5" fill="#8b7f8a" opacity=".5"/>
+        <rect x="212" y="252" width="82" height="7" rx="3.5" fill="#fff" opacity=".8"/>
+        <rect x="212" y="268" width="60" height="7" rx="3.5" fill="#fff" opacity=".5"/>
+        <rect x="212" y="292" width="40" height="20" rx="10" fill="#f4685a"/>
+        <path d="M340 60c18 22 18 52 0 74" stroke="#e0a458" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+        <circle cx="352" cy="300" r="8" fill="#f4685a" opacity=".7"/>
+        <circle cx="40" cy="220" r="6" fill="#e0a458" opacity=".8"/>
+      </svg>
+      <span class="float-tag ft-1"><i></i>城市漫游 · 上海弄堂</span>
+      <span class="float-tag ft-2"><i></i>深夜食堂 第 9 集</span>
+      <span class="float-tag ft-3"><i></i>手作记录 · 陶艺</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 主布局：三栏门户 ============ -->
+<div class="layout">
+
+  <!-- 左：频道索引 -->
+  <aside class="channel-rail" aria-label="频道索引">
+    <div class="rail-card">
+      <div class="rail-title">影像频道</div>
+      <ul class="rail-nav">
+        <li><a href="/#categories">城市漫游 <span class="cnt">32</span></a></li>
+        <li><a href="/#categories">深夜食堂 <span class="cnt">28</span></a></li>
+        <li><a href="/#categories">手作记录 <span class="cnt">19</span></a></li>
+        <li><a href="/#categories">周末出逃 <span class="cnt">24</span></a></li>
+        <li><a href="/#categories">独居日记 <span class="cnt">16</span></a></li>
+        <li><a href="/#categories">街角小店 <span class="cnt">21</span></a></li>
+        <li><a href="/#categories">通勤切片 <span class="cnt">13</span></a></li>
+        <li><a href="/#categories">节气食记 <span class="cnt">11</span></a></li>
+        <li><a href="/#categories">搬家实录 <span class="cnt">9</span></a></li>
+      </ul>
+    </div>
+    <div class="rail-card">
+      <div class="rail-title">今日提示</div>
+      <p class="rail-sub">11 月 8 日 <b>20:00</b> 有「城市漫游 · 夜骑苏州河」直播，时长约 70 分钟。今晚更新「深夜食堂」第 9 集。</p>
+    </div>
+  </aside>
+
+  <!-- 中：主内容 -->
+  <main class="main-col">
+
+    <!-- 1. 领域概览 -->
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <h2>生活影像领域概览</h2>
+      </div>
+      <p class="section-lead">糖心vlog 所覆盖的内容方向，以及当前值得留意的几类条目。</p>
+      <div class="overview">
+        <p><span class="kw">糖心vlog</span> 指以真实日常为核心的生活影像记录，和精剪剧情短片不同，它更看重长时间的自然状态、现场的杂音与不完美的片段。按拍摄场景可分成几个清晰方向：<b>城市漫游</b>偏行走观察，一条片子通常只走一段路；<b>深夜食堂</b>以做饭和吃饭为主，节奏慢、环境声多；<b>手作记录</b>跟着一件物品从材料到成品；<b>周末出逃</b>是短途旅行，重点在交通、住宿和一路上的吃。</p>
+        <p>近期值得关注的条目集中在两类。一类是连续更新的系列，比如「深夜食堂」已经到第 9 集，每集一道家常菜，观众可以按集数顺序看，也可以单独挑菜；另一类是单集完结的长片，像「城市漫游 · 上海弄堂 40 分钟版」，适合一次看完。两类条目的观看方式差别很大，前者适合碎片时间，后者需要预留完整时段。</p>
+        <p>从判断维度看，生活影像的质量通常落在三件事上：<b>现场感是否足够</b>、<b>剪辑是否克制</b>、<b>信息是否具体</b>。现场感看环境音有没有被配乐盖掉；克制看镜头有没有频繁切换；具体看片子里有没有出现真实地名、店名、价格和做法。这三项都能在开头三分钟里大致判断出来，也是本页在条目看点里反复标注的内容。</p>
+      </div>
+    </section>
+
+    <!-- 2. 精选内容推荐 -->
+    <section class="section-block" id="featured">
+      <div class="section-head">
+        <h2>精选影像条目</h2>
+        <a class="more" href="/#rank">查看榜单 →</a>
+      </div>
+      <p class="section-lead">按当下可看度挑选的 8 条，含系列集数与单集长片。</p>
+      <div class="card-grid" id="featuredGrid">
+
+        <article class="v-card searchable" data-title="城市漫游 上海弄堂 40 分钟版">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-city01/400/300" alt="城市漫游上海弄堂长片封面" width="400" height="300" loading="lazy">
+            <span class="badge">城市漫游</span>
+            <span class="heat">热度 9.2</span>
+          </div>
+          <div class="body">
+            <h3>城市漫游 · 上海弄堂 40 分钟版</h3>
+            <p>从静安寺一路走到愚园路，全程手持、无配乐，收录了修鞋摊、老虎灶和傍晚的晾衣声。适合想了解老街区日常节奏的人。</p>
+            <div class="tags"><span>长片</span><span>无配乐</span><span>街区观察</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="深夜食堂 第 9 集 番茄牛腩">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-food09/400/300" alt="深夜食堂第九集番茄牛腩封面" width="400" height="300" loading="lazy">
+            <span class="badge">深夜食堂</span>
+            <span class="heat">热度 8.8</span>
+          </div>
+          <div class="body">
+            <h3>深夜食堂 · 第 9 集 番茄牛腩</h3>
+            <p>本集从买菜开始，完整记录两小时慢炖过程，包含焯水、炒糖色和收汁的具体时间点。厨房新手可以照着实操。</p>
+            <div class="tags"><span>系列</span><span>家常菜</span><span>可跟做</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="手作记录 陶艺拉坯第一次">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-clay03/400/300" alt="手作记录陶艺拉坯封面" width="400" height="300" loading="lazy">
+            <span class="badge">手作记录</span>
+            <span class="heat">热度 8.5</span>
+          </div>
+          <div class="body">
+            <h3>手作记录 · 陶艺拉坯第一次</h3>
+            <p>记录一位零基础学员在景德镇工作室的两小时，从揉泥到失败三次，最后只成一只歪碗。失败过程没有剪掉，反而更实用。</p>
+            <div class="tags"><span>单集</span><span>景德镇</span><span>失败实录</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="周末出逃 杭州到临安 48 小时">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-trip07/400/300" alt="周末出逃临安两日封面" width="400" height="300" loading="lazy">
+            <span class="badge">周末出逃</span>
+            <span class="heat">热度 8.9</span>
+          </div>
+          <div class="body">
+            <h3>周末出逃 · 杭州到临安 48 小时</h3>
+            <p>两天一夜的短途路线，含高铁、公交、民宿和一顿山里的土鸡煲，把交通耗时和花费都写在画面里，适合直接照搬。</p>
+            <div class="tags"><span>短途</span><span>路线可复制</span><span>花费透明</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="独居日记 一人份晚餐第 12 天">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-solo12/400/300" alt="独居日记一人份晚餐封面" width="400" height="300" loading="lazy">
+            <span class="badge">独居日记</span>
+            <span class="heat">热度 8.3</span>
+          </div>
+          <div class="body">
+            <h3>独居日记 · 一人份晚餐第 12 天</h3>
+            <p>十五分钟做一菜一汤，重点在洗切顺序和锅具选择。全片只有灶台声和窗外的车流声，是典型的下饭型条目。</p>
+            <div class="tags"><span>系列</span><span>快速料理</span><span>下饭</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="街角小店 修表铺的一天">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-shop05/400/300" alt="街角小店修表铺封面" width="400" height="300" loading="lazy">
+            <span class="badge">街角小店</span>
+            <span class="heat">热度 8.6</span>
+          </div>
+          <div class="body">
+            <h3>街角小店 · 修表铺的一天</h3>
+            <p>跟拍一位开了三十年的修表师傅，从开店、等客到傍晚关灯。镜头几乎不动，靠对话和手上的动作撑起整条片子。</p>
+            <div class="tags"><span>人物</span><span>长镜头</span><span>手艺人</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="通勤切片 早高峰地铁换乘">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-subway02/400/300" alt="通勤切片早高峰地铁封面" width="400" height="300" loading="lazy">
+            <span class="badge">通勤切片</span>
+            <span class="heat">热度 8.1</span>
+          </div>
+          <div class="body">
+            <h3>通勤切片 · 早高峰地铁换乘</h3>
+            <p>七点二十到八点十分，完整走一遍三线换乘，记录人流、扶梯速度和车厢拥挤程度，是了解城市节奏的短样本。</p>
+            <div class="tags"><span>短集</span><span>声音采集</span><span>城市节奏</span></div>
+          </div>
+        </article>
+
+        <article class="v-card searchable" data-title="节气食记 立冬羊肉汤">
+          <div class="thumb">
+            <img src="https://picsum.photos/seed/tangxin-soup11/400/300" alt="节气食记立冬羊肉汤封面" width="400" height="300" loading="lazy">
+            <span class="badge">节气食记</span>
+            <span class="heat">热度 8.7</span>
+          </div>
+          <div class="body">
+            <h3>节气食记 · 立冬羊肉汤</h3>
+            <p>按节气做一道应季菜，本集讲羊肉去膻的三种处理和汤色浓淡的差别。附一段菜市场挑肉的实录。</p>
+            <div class="tags"><span>节气</span><span>应季</span><span>食材讲解</span></div>
+          </div>
+        </article>
+
+      </div>
+      <div class="no-result" id="noResult">没有找到匹配的影像条目，换个关键词试试，例如「深夜食堂」「临安」「陶艺」。</div>
+    </section>
+
+    <!-- 3. 最新更新 -->
+    <section class="section-block" id="updates">
+      <div class="section-head">
+        <h2>最新更新与热播动态</h2>
+        <a class="more" href="/#news">全部动态 →</a>
+      </div>
+      <p class="section-lead">以 11 月 8 日为基准，近三日内的条目变化。</p>
+      <div class="update-list">
+        <div class="update-item">
+          <span class="update-time">今天 20:00</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-live08/54/54" alt="夜骑苏州河直播封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>城市漫游 · 夜骑苏州河</h3><p>今晚八点直播，从梦清园出发到外白渡桥，全程约 70 分钟。</p></div>
+          <span class="update-tag tag-new">直播</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">今天 18:30</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-food09b/54/54" alt="深夜食堂第九集封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>深夜食堂 · 第 9 集 番茄牛腩</h3><p>本集已上线，时长 22 分钟，含完整炖煮时间轴。</p></div>
+          <span class="update-tag tag-new">新上线</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">今天 14:10</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-clay03b/54/54" alt="陶艺拉坯补充片段封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>手作记录 · 陶艺拉坯第一次</h3><p>补充了一段 6 分钟的修坯片段，接在正片结尾。</p></div>
+          <span class="update-tag tag-up">补充片段</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">昨天 21:40</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-trip07b/54/54" alt="临安两日游民宿更正封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>周末出逃 · 临安 48 小时</h3><p>更新了民宿价格信息，原片中的房价已调整为当前实际报价。</p></div>
+          <span class="update-tag tag-up">信息更正</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">昨天 19:20</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-shop05b/54/54" alt="修表铺加更封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>街角小店 · 修表铺的一天</h3><p>加更一集 9 分钟的番外，讲师傅收徒的经过。</p></div>
+          <span class="update-tag tag-hot">加更</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11 月 7 日</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-solo12b/54/54" alt="独居日记第十二天封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>独居日记 · 一人份晚餐第 12 天</h3><p>新一集上线，本期主打十五分钟快手菜。</p></div>
+          <span class="update-tag tag-new">新上线</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11 月 6 日</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-soup11b/54/54" alt="立冬羊肉汤封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>节气食记 · 立冬羊肉汤</h3><p>应季条目上线，配合立冬节气更新。</p></div>
+          <span class="update-tag tag-hot">应季</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11 月 5 日</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-subway02b/54/54" alt="通勤切片地铁封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>通勤切片 · 早高峰地铁换乘</h3><p>新增全程环境声版本，去掉原来叠加的背景音乐。</p></div>
+          <span class="update-tag tag-up">版本更新</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11 月 3 日</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-city01b/54/54" alt="上海弄堂长片封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>城市漫游 · 上海弄堂 40 分钟版</h3><p>发布导演剪辑版，补入两段被删掉的弄堂清晨镜头。</p></div>
+          <span class="update-tag tag-up">剪辑版</span>
+        </div>
+        <div class="update-item">
+          <span class="update-time">11 月 1 日</span>
+          <span class="update-thumb"><img src="https://picsum.photos/seed/tangxin-clay03c/54/54" alt="陶艺拉坯花絮封面" width="54" height="54" loading="lazy"></span>
+          <div class="update-main"><h3>手作记录 · 陶艺拉坯第一次</h3><p>上线拍摄花絮，展示工作室的布光和收音方式。</p></div>
+          <span class="update-tag tag-hot">花絮</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 分类入口 -->
+    <section class="section-block" id="categories">
+      <div class="section-head">
+        <h2>按类型查找影像</h2>
+      </div>
+      <p class="section-lead">九类方向，名称对应日常搜索时最常用的词。</p>
+      <div class="cat-grid">
+        <a class="cat-chip" href="/#featured"><b>城市漫游</b><span>街区行走 · 32 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>深夜食堂</b><span>做饭吃饭 · 28 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>手作记录</b><span>材料到成品 · 19 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>周末出逃</b><span>短途旅行 · 24 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>独居日记</b><span>一人生活 · 16 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>街角小店</b><span>店铺人物 · 21 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>通勤切片</b><span>路上片段 · 13 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>节气食记</b><span>应季食材 · 11 条</span></a>
+        <a class="cat-chip" href="/#featured"><b>搬家实录</b><span>居住变化 · 9 条</span></a>
+      </div>
+    </section>
+
+    <!-- 5. 深度解析 -->
+    <section class="section-block" id="deep">
+      <div class="section-head">
+        <h2>深度解析：四类生活影像的差别</h2>
+      </div>
+      <p class="section-lead">从节奏、信息密度和观看场景三个角度，比较城市漫游、深夜食堂、手作记录与周末出逃。</p>
+      <div class="deep">
+        <h3>节奏差异：慢镜头与强信息的分界</h3>
+        <p><b>城市漫游</b>的节奏最慢。一条四十分钟的片子可能只走完两公里，镜头长时间停在同一面墙、同一扇窗上，靠环境声推进。判断这类条目是否值得看，可以看开头五分钟有没有出现具体地名和人物对话——如果一个都没有，多数是空镜堆叠，信息量偏低。</p>
+        <p><b>深夜食堂</b>的节奏中等偏稳。它需要一个明确的操作流程：备料、下锅、等待、出锅，每个阶段都有可对照的时间点。像第 9 集番茄牛腩，从焯水到收汁标出了具体分钟数，这类条目对想动手做的人价值最高；如果只拍成品特写、跳过过程，就更接近美食展示片，跟做价值有限。</p>
+        <p><b>手作记录</b>的节奏取决于工序。陶艺、木工、缝纫这类内容天然有多个阶段，信息密度高但容易冗长。好的处理是把失败段落保留、把重复动作压缩，比如陶艺拉坯那条只成一只歪碗，失败三次全留着，观众能看清手部用力的变化，这比成功成品更有参考意义。</p>
+        <p><b>周末出逃</b>的节奏最快，因为它要装下交通、住宿、吃饭三件事。判断标准是看它有没有把时间和花费写清楚：几点出发、换乘几次、住了多少钱、吃了什么。这类条目如果只拍风景，实用性会明显下降。</p>
+
+        <div class="quote">一个简单的判断方式：把片子静音看三十秒，如果仍能大致知道发生什么，说明画面信息足够；如果完全看不懂，通常说明它依赖解说或配乐撑场，现场感偏弱。</div>
+
+        <h3>信息密度：具体名词的数量</h3>
+        <p>生活影像的可搜索性，很大程度取决于片中出现多少具体名词。地名、店名、菜名、材料名、工具名、价格数字，这些都是观众之后会去搜的词。以「城市漫游 · 上海弄堂」为例，片中出现了静安寺、愚园路、老虎灶、修鞋摊，观众看完可以直接按这些词继续找相关内容。</p>
+        <ul>
+          <li><b>城市漫游：</b>关注路名、门牌、店铺类型、时间段，傍晚与清晨的光线差别明显。</li>
+          <li><b>深夜食堂：</b>关注食材分量、火候时间、调味顺序，缺少任一项都会降低可操作性。</li>
+          <li><b>手作记录：</b>关注材料成本、工具型号、失败原因，工序越多越需要分段说明。</li>
+          <li><b>周末出逃：</b>关注交通方式、耗时、住宿价格、餐饮人均，缺一项就不太好照搬。</li>
+        </ul>
+
+        <h3>观看场景：下饭、助眠与专注</h3>
+        <p>同样的内容，在不同场景下的选择并不一样。<b>下饭</b>适合选独居日记、深夜食堂这类有锅碗声、节奏平稳的条目，注意力可以分散；<b>助眠</b>更适合环境声干净、没有人声解说的城市漫游，尤其是夜间行走的段落；<b>专注观看</b>则留给手作记录和长篇漫游，需要看清细节、跟着工序走。</p>
+        <p>这也解释了为什么同一类型的条目会有不同版本。通勤切片那条在 11 月 5 日上线了去掉背景音乐的全程环境声版，就是为助眠和专注两种场景准备的；原来的配乐版更适合当背景音。选择版本时先想清楚自己要什么场景，比按热度排序更有效。</p>
+
+        <h3>条目比较：三条同题材如何取舍</h3>
+        <p>以城市漫游为例，当前有三条同题材条目可以对照。第一条是上海弄堂四十分钟版，优势在时长完整、无配乐、地名密集；第二条是夜骑苏州河直播回放，优势在路线清晰、有实时解说，但光线变化大；第三条是通勤切片，优势在短、节奏快，适合先试看。三条的取舍逻辑是：想完整了解一个街区，选第一条；想快速判断城市气质，选第三条；想跟着走一遍路线，选第二条。</p>
+        <p>深夜食堂也有类似情况。第 9 集番茄牛腩适合跟做，因为时间轴完整；而独居日记的一人份晚餐更偏生活记录，做菜只是其中一部分，流程被压缩过，跟着做容易漏步骤。两者都好看，但用途不同，先明确是「学做菜」还是「看别人过日子」，再决定点开哪一条。</p>
+      </div>
+    </section>
+
+    <!-- 6. 体验指南 / 消费路径 -->
+    <section class="section-block" id="guide">
+      <div class="section-head">
+        <h2>观看顺序与取舍路径</h2>
+      </div>
+      <p class="section-lead">第一次接触这类影像时，可以按下面四步走。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-body">
+            <h3>先用短条目试水</h3>
+            <p>从「通勤切片」或「独居日记」这类十分钟以内的条目开始，确认自己能不能接受慢节奏和大量环境声。这一步主要看耐受度，不看内容好坏。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <h3>再判断类型偏好</h3>
+            <p>试看之后通常能分出两类偏好：喜欢看人做事的，往手作记录和深夜食堂走；喜欢看地方和路线的，往城市漫游和周末出逃走。两类内容的观看方式差别很大，先定方向再挑条目。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <h3>按信息密度筛选</h3>
+            <p>同一类型里，优先选出现具体地名、店名、价格和步骤的条目。信息密度高的片子看完能留下可查的线索，也更容易判断它是不是真实记录。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-body">
+            <h3>最后才看时长与集数</h3>
+            <p>系列条目适合碎片时间，单集长片要预留完整时段。像上海弄堂四十分钟版，最好一次看完，中途打断会丢失行走的连贯感；而深夜食堂按集看，随时停下都不影响理解。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section-block" id="faq">
+      <div class="section-head">
+        <h2>常见问答</h2>
+      </div>
+      <p class="section-lead">围绕更新频率、类型差别和入门选择的六个问题。</p>
+      <div class="faq-list">
+        <details open>
+          <summary>深夜食堂系列一般多久更新一集？</summary>
+          <div class="faq-a">目前大致保持<b>每周一集</b>的节奏，遇到节气或节日会插入应季特辑。第 9 集在 11 月 8 日上线，按这个频率下一集预计在 11 月中旬。系列条目更新时通常会在公告条里写清集数和菜名。</div>
+        </details>
+        <details>
+          <summary>城市漫游和周末出逃有什么区别？</summary>
+          <div class="faq-a">两者都以地点为核心，但目的不同。<b>城市漫游</b>是在一个城市内部长时间步行观察，强调街区细节和日常声音，通常不带行程规划；<b>周末出逃</b>是短途跨城旅行，重点是交通、住宿和吃饭的安排，信息更偏实用。想了解一个地方的生活感，看前者；想照搬一趟行程，看后者。</div>
+        </details>
+        <details>
+          <summary>第一次看这类影像，从哪一条开始比较好？</summary>
+          <div class="faq-a">建议从<b>「独居日记 · 一人份晚餐第 12 天」</b>开始，十五分钟、节奏平稳、有具体做法，容易进入状态。如果更喜欢看地方，可以换<b>「城市漫游 · 上海弄堂 40 分钟版」</b>的前十分钟试看，再决定要不要看完。</div>
+        </details>
+        <details>
+          <summary>手作记录类的片子，评判标准通常是什么？</summary>
+          <div class="faq-a">主要看三点：<b>工序是否完整</b>、<b>失败有没有保留</b>、<b>材料与工具是否说明清楚</b>。只展示成品的片子观赏性有，但参考价值低；把失败段落留下的，往往更能说明实际难度。陶艺拉坯那条保留三次失败，就是比较典型的处理方式。</div>
+        </details>
+        <details>
+          <summary>同一题材有多个版本时怎么选？</summary>
+          <div class="faq-a">先看版本说明里有没有标注差异，比如是否去掉配乐、是否补充片段、时长差多少。助眠场景选无配乐的环境声版，专注观看选导演剪辑版，只想快速了解选短版。通勤切片和上海弄堂都提供过不同版本，选择时按使用场景判断，比按热度排序更准。</div>
+        </details>
+        <details>
+          <summary>节气食记和深夜食堂的内容会重复吗？</summary>
+          <div class="faq-a">方向不同，重叠有限。<b>深夜食堂</b>按集做家常菜，重操作过程；<b>节气食记</b>跟着节气走，重食材的时令性和挑选方法，比如立冬羊肉汤会讲三种去膻处理。两者都涉及做菜，但前者偏「怎么做」，后者偏「为什么这个时候吃这个」。</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 8. 用户评论 -->
+    <section class="section-block" id="comments">
+      <div class="section-head">
+        <h2>观众评论</h2>
+      </div>
+      <p class="section-lead">来自不同观看场景的 14 条反馈，围绕具体条目展开。</p>
+      <div class="comment-grid">
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#f4685a">林</span><span class="cmt-name">林间散步</span><span class="cmt-meta">11 月 8 日</span></div>
+          <p>番茄牛腩那集跟着做了，焯水时间写得很清楚，第一次炖没翻车。就是收汁那段希望再给个火力说明。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#5f9e7a">周</span><span class="cmt-name">周末不加班</span><span class="cmt-meta">11 月 8 日</span></div>
+          <p>临安 48 小时那条路线基本能照搬，高铁加公交的时间都对得上。民宿价格更新过之后更靠谱了。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#e0a458">陈</span><span class="cmt-name">陈皮拿铁</span><span class="cmt-meta">11 月 7 日</span></div>
+          <p>上海弄堂四十分钟版看完了，安静得有点不习惯，但修鞋摊那段确实好。适合周末早上放着当背景。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#8b7f8a">顾</span><span class="cmt-name">顾小满</span><span class="cmt-meta">11 月 7 日</span></div>
+          <p>陶艺那条失败三次全留着，看得我笑出声，但也确实是这种片子才敢留失败。歪碗最后还挺好看。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#d94f42">苏</span><span class="cmt-name">苏打水加冰</span><span class="cmt-meta">11 月 7 日</span></div>
+          <p>独居日记第十二天节奏刚好，十五分钟一菜一汤，下班回家照着做不算太累。希望能多出几集。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#5a4256">何</span><span class="cmt-name">何处的风</span><span class="cmt-meta">11 月 6 日</span></div>
+          <p>修表铺那条镜头几乎不动，一开始觉得闷，看到师傅讲收徒那段突然就有味道了。这种片子得慢慢看。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#f08a7e">许</span><span class="cmt-name">许多多</span><span class="cmt-meta">11 月 6 日</span></div>
+          <p>通勤切片去掉配乐的版本比原来好，早高峰那种闷闷的车厢声才是重点，配乐反而出戏。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#3d7d5c">吴</span><span class="cmt-name">吴所谓</span><span class="cmt-meta">11 月 5 日</span></div>
+          <p>立冬羊肉汤讲去膻讲了三种方法，姜、萝卜和料酒分开说，比笼统说「去膻」有用得多。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#c07a24">沈</span><span class="cmt-name">沈默是金</span><span class="cmt-meta">11 月 5 日</span></div>
+          <p>夜骑苏州河的直播没赶上，回放里光线变化太大，后半段基本看不清路。内容不错，拍摄条件可以再好点。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#f4685a">唐</span><span class="cmt-name">糖不甩</span><span class="cmt-meta">11 月 4 日</span></div>
+          <p>深夜食堂和节气食记确实不重复，一个教做饭，一个讲为什么这个季节吃这个，两个一起看正好。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#8b7f8a">梁</span><span class="cmt-name">梁上燕</span><span class="cmt-meta">11 月 4 日</span></div>
+          <p>街角小店系列都挺稳的，就是更新有点慢。修表铺番外九分钟太短了，希望能再长一点。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#5f9e7a">叶</span><span class="cmt-name">叶落知秋</span><span class="cmt-meta">11 月 3 日</span></div>
+          <p>整体节奏偏慢，适合晚上放着。不过城市漫游有的集数确实太空，走了十分钟什么都没有，信息量不太够。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#e0a458">韩</span><span class="cmt-name">韩梅梅</span><span class="cmt-meta">11 月 2 日</span></div>
+          <p>希望分类里能加一个「菜市场」方向，现在买菜相关的片段散在好几个系列里，找起来不太方便。</p>
+        </div>
+        <div class="cmt">
+          <div class="cmt-head"><span class="cmt-avatar" style="background:#d94f42">郑</span><span class="cmt-name">郑在路上</span><span class="cmt-meta">11 月 1 日</span></div>
+          <p>周末出逃的花费透明度是加分项，交通住宿餐饮都标了数字。比那些只拍风景不说成本的旅行片实用。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. 相关资讯 -->
+    <section class="section-block" id="news">
+      <div class="section-head">
+        <h2>相关资讯</h2>
+      </div>
+      <p class="section-lead">近一周内与生活影像相关的具体动态。</p>
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news01/600/400" alt="深夜食堂第九集上线资讯配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>深夜食堂第 9 集上线，首次标注完整炖煮时间轴</h3>
+            <p>本集番茄牛腩从焯水到收汁共标出六个时间点，是系列里操作说明最细的一集。</p>
+            <span class="news-date">2026-11-08</span>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news02/600/400" alt="夜骑苏州河直播预告配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>夜骑苏州河今晚八点直播，路线从梦清园到外白渡桥</h3>
+            <p>全程约 70 分钟，采用手持跟拍，直播结束后会提供去掉解说的环境声版本。</p>
+            <span class="news-date">2026-11-08</span>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news03/600/400" alt="临安路线民宿价格更正配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>临安 48 小时路线更正民宿价格，交通信息同步更新</h3>
+            <p>原片中的房价与当前实际报价有出入，11 月 7 日已替换相关画面并补充公交班次。</p>
+            <span class="news-date">2026-11-07</span>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news04/600/400" alt="通勤切片环境声版上线配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>通勤切片上线全程环境声版，去掉全部背景音乐</h3>
+            <p>新版保留车厢广播、扶梯和脚步声，时长与正片一致，适合专注或助眠场景。</p>
+            <span class="news-date">2026-11-05</span>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news05/600/400" alt="上海弄堂导演剪辑版发布配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>上海弄堂 40 分钟版发布导演剪辑版，补入两段清晨镜头</h3>
+            <p>新增内容集中在早上六点到七点之间，展示了弄堂开市前的安静状态。</p>
+            <span class="news-date">2026-11-03</span>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-thumb"><img src="https://picsum.photos/seed/tangxin-news06/600/400" alt="陶艺拍摄花絮上线配图" width="600" height="400" loading="lazy"></div>
+          <div class="news-body">
+            <h3>陶艺拉坯拍摄花絮上线，公开工作室布光与收音方式</h3>
+            <p>花絮展示了如何在不干扰手作过程的情况下布置灯光，对同类拍摄有参考价值。</p>
+            <span class="news-date">2026-11-01</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10. 相关推荐 -->
+    <section class="section-block" id="related">
+      <div class="section-head">
+        <h2>延伸方向与相关条目</h2>
+      </div>
+      <p class="section-lead">偏方向性的索引，和上面的精选条目角度不同。</p>
+      <div class="rel-tags">
+        <a href="/#featured">菜市场采购实录</a>
+        <a href="/#featured">老式理发店的一天</a>
+        <a href="/#featured">雨天窗边手冲咖啡</a>
+        <a href="/#featured">县道骑行沿途小吃</a>
+        <a href="/#featured">搬家后的第一次开火</a>
+        <a href="/#featured">木工榫卯入门</a>
+        <a href="/#featured">凌晨四点的早餐铺</a>
+        <a href="/#featured">无配乐环境声合集</a>
+      </div>
+    </section>
+
+    <!-- 11. 补充板块：榜单 -->
+    <section class="section-block" id="rank">
+      <div class="section-head">
+        <h2>本周可看度榜单</h2>
+        <a class="more" href="/#featured">回到精选 →</a>
+      </div>
+      <p class="section-lead">按信息密度、现场感和完成度综合排序，统计截至 11 月 8 日。</p>
+      <div class="rank-list">
+        <div class="rank-item"><span class="rank-num">1</span><div class="rank-main"><h3>城市漫游 · 上海弄堂 40 分钟版</h3><p>导演剪辑版 · 地名密集 · 无配乐</p></div><span class="rank-score">9.2</span></div>
+        <div class="rank-item"><span class="rank-num">2</span><div class="rank-main"><h3>周末出逃 · 杭州到临安 48 小时</h3><p>路线可复制 · 花费透明 · 已更正价格</p></div><span class="rank-score">8.9</span></div>
+        <div class="rank-item"><span class="rank-num">3</span><div class="rank-main"><h3>深夜食堂 · 第 9 集 番茄牛腩</h3><p>时间轴完整 · 可跟做 · 22 分钟</p></div><span class="rank-score">8.8</span></div>
+        <div class="rank-item"><span class="rank-num">4</span><div class="rank-main"><h3>节气食记 · 立冬羊肉汤</h3><p>应季食材 · 去膻三法 · 菜市场实录</p></div><span class="rank-score">8.7</span></div>
+        <div class="rank-item"><span class="rank-num">5</span><div class="rank-main"><h3>街角小店 · 修表铺的一天</h3><p>人物扎实 · 长镜头 · 有番外加更</p></div><span class="rank-score">8.6</span></div>
+        <div class="rank-item"><span class="rank-num">6</span><div class="rank-main"><h3>手作记录 · 陶艺拉坯第一次</h3><p>失败实录 · 修坯片段 · 景德镇</p></div><span class="rank-score">8.5</span></div>
+        <div class="rank-item"><span class="rank-num">7</span><div class="rank-main"><h3>独居日记 · 一人份晚餐第 12 天</h3><p>十五分钟 · 下饭 · 锅具说明清楚</p></div><span class="rank-score">8.3</span></div>
+        <div class="rank-item"><span class="rank-num">8</span><div class="rank-main"><h3>通勤切片 · 早高峰地铁换乘</h3><p>有环境声版 · 短集 · 城市节奏样本</p></div><span class="rank-score">8.1</span></div>
+      </div>
+    </section>
+
+    <!-- 12. 补充板块：时间线 -->
+    <section class="section-block" id="timeline">
+      <div class="section-head">
+        <h2>近两周条目时间线</h2>
+      </div>
+      <p class="section-lead">从 11 月 1 日到 11 月 8 日的上线与更新记录。</p>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">11 月 8 日</div><h3>夜骑苏州河直播预告 · 深夜食堂第 9 集上线</h3><p>两条同日发布，一条直播、一条系列更新。</p></div>
+        <div class="tl-item"><div class="tl-date">11 月 7 日</div><h3>临安路线价格更正 · 独居日记第 12 天上线</h3><p>一条信息更正、一条新集上线。</p></div>
+        <div class="tl-item"><div class="tl-date">11 月 6 日</div><h3>节气食记 · 立冬羊肉汤上线</h3><p>配合立冬节气更新。</p></div>
+        <div class="tl-item"><div class="tl-date">11 月 5 日</div><h3>通勤切片环境声版上线</h3><p>去掉配乐，保留全程现场声。</p></div>
+        <div class="tl-item"><div class="tl-date">11 月 3 日</div><h3>上海弄堂导演剪辑版发布</h3><p>补入两段清晨镜头，总时长增加约 6 分钟。</p></div>
+        <div class="tl-item"><div class="tl-date">11 月 1 日</div><h3>陶艺拉坯拍摄花絮上线</h3><p>公开布光与收音方式，供同类拍摄参考。</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 右：辅助栏 -->
+  <aside class="side-col" aria-label="辅助信息">
+    <div class="side-card">
+      <div class="side-head">今日热榜</div>
+      <ul class="side-hot">
+        <li><span class="hot-rank">1</span><div class="hot-info"><h4>夜骑苏州河 · 直播</h4><span>今晚 20:00 · 约 70 分钟</span></div></li>
+        <li><span class="hot-rank">2</span><div class="hot-info"><h4>深夜食堂 第 9 集</h4><span>今天上线 · 22 分钟</span></div></li>
+        <li><span class="hot-rank">3</span><div class="hot-info"><h4>上海弄堂 40 分钟版</h4><span>导演剪辑版 · 9.2 分</span></div></li>
+        <li><span class="hot-rank">4</span><div class="hot-info"><h4>临安 48 小时路线</h4><span>价格已更正 · 8.9 分</span></div></li>
+        <li><span class="hot-rank">5</span><div class="hot-info"><h4>陶艺拉坯第一次</h4><span>修坯片段补充 · 8.5 分</span></div></li>
+        <li><span class="hot-rank">6</span><div class="hot-info"><h4>修表铺的一天</h4><span>番外加更 · 8.6 分</span></div></li>
+      </ul>
+    </div>
+
+    <div class="side-card">
+      <div class="side-head">热门搜索词</div>
+      <div class="side-tags">
+        <a href="/#featured">番茄牛腩做法</a>
+        <a href="/#featured">上海弄堂散步</a>
+        <a href="/#featured">临安两天一夜</a>
+        <a href="/#featured">陶艺拉坯入门</a>
+        <a href="/#featured">立冬羊肉汤</a>
+        <a href="/#featured">无配乐环境声</a>
+        <a href="/#featured">修表师傅</a>
+        <a href="/#featured">一人份晚餐</a>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-head">本周提示</div>
+      <p class="side-note">11 月 8 日至 11 月 14 日，<b>城市漫游</b>频道将集中在傍晚时段更新，夜间行走段落会标注拍摄时间。系列条目按周更新，单集长片不定期上线。</p>
+    </div>
+  </aside>
+
+</div>
+
+<!-- ============ 页尾 ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-mark">
+            <svg viewBox="0 0 64 64" width="38" height="38" role="img" aria-label="糖心vlog 标志">
+              <rect width="64" height="64" rx="14" fill="#f4685a"/>
+              <path d="M20 34c0-7 6-13 13-13 5 0 9 2 12 6l-6 4c-1-2-3-3-6-3-4 0-7 3-7 7s3 7 7 7c3 0 5-1 6-3l6 4c-3 4-7 6-12 6-8 0-13-6-13-15z" fill="#fff"/>
+              <circle cx="47" cy="17" r="3" fill="#ffd9a0"/>
+            </svg>
+          </span>
+          <b>糖心vlog</b>
+        </div>
+        <p class="footer-desc">记录城市漫游、深夜食堂、手作与短途出逃的生活影像聚合页，整理条目看点、更新动态与类型差别，帮助观众判断先看哪一条。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容频道</h4>
+        <ul>
+          <li><a href="/#categories">城市漫游</a></li>
+          <li><a href="/#categories">深夜食堂</a></li>
+          <li><a href="/#categories">手作记录</a></li>
+          <li><a href="/#categories">周末出逃</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>浏览入口</h4>
+        <ul>
+          <li><a href="/#featured">精选影像</a></li>
+          <li><a href="/#updates">更新动态</a></li>
+          <li><a href="/#rank">本周榜单</a></li>
+          <li><a href="/#timeline">条目时间线</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>参考内容</h4>
+        <ul>
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">观看路径</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#related">延伸方向</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 糖心vlog 内容聚合页 · 影像条目与评论均为主题化示例</span>
+      <span class="demo-note">部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('siteSearch');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#featuredGrid .searchable'));
+  var noResult = document.getElementById('noResult');
+  var randomBtn = document.getElementById('randomBtn');
+
+  function filterCards(){
+    var q = (input.value || '').trim().toLowerCase();
+    if(!q){
+      cards.forEach(function(c){ c.style.display = ''; });
+      noResult.classList.remove('show');
+      return;
+    }
+    var visible = 0;
+    cards.forEach(function(c){
+      var title = (c.getAttribute('data-title') || '') + ' ' + c.textContent;
+      if(title.toLowerCase().indexOf(q) !== -1){
+        c.style.display = '';
+        visible++;
+      } else {
+        c.style.display = 'none';
+      }
+    });
+    noResult.classList.toggle('show', visible === 0);
+  }
+
+  input.addEventListener('input', filterCards);
+  input.addEventListener('search', filterCards);
+
+  randomBtn.addEventListener('click', function(){
+    if(!cards.length) return;
+    var pick = cards[Math.floor(Math.random() * cards.length)];
+    var title = pick.getAttribute('data-title') || '';
+    input.value = title.slice(0, 6);
+    filterCards();
+    pick.scrollIntoView({behavior:'smooth', block:'center'});
+    pick.style.transition = 'box-shadow .3s, transform .3s';
+    pick.style.boxShadow = '0 0 0 3px rgba(244,104,90,.45)';
+    setTimeout(function(){ pick.style.boxShadow = ''; }, 1400);
+  });
+})();
+</script>
+</body>
+              </html>
